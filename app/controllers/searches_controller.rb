@@ -10,6 +10,10 @@ class SearchesController < ApplicationController
       create_article(article)
     end
   end
+  
+  def index
+  end
+
 
   private
 
@@ -29,23 +33,22 @@ class SearchesController < ApplicationController
 
   end
 
-  private
-    def fill_images
-        @article[:images].each do |image|
-        @image = Image.new
-        if @image.new_record?
-          @image.url = image.url
-          @image.article = @article
-        end
+  def fill_images
+      @article[:images].each do |image|
+      @image = Image.new
+      if @image.new_record?
+        @image.url = image.url
+        @image.article = @article
       end
     end
+  end
 
-    def fill_stock
-      article[:size_stock].each do |size, stock|
-        @stock = Stock.new
-        @stock.size = size
-        @stock.stock = stock
-        @stock.article = @article
-      end
+  def fill_stock
+    article[:size_stock].each do |size, stock|
+      @stock = Stock.new
+      @stock.size = size
+      @stock.stock = stock
+      @stock.article = @article
     end
+  end
 end
