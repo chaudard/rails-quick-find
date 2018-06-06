@@ -1,6 +1,16 @@
 <div class="container">
   <h1>QuickFind</h1>
-  <div id="autocomplete">
+  <!-- <div id="autocomplete">
     <input id="address" placeholder="Enter your address" type="text"></input>
+  </div> -->
+  <div class="col-xs-12 search-form">
+    <%= simple_form_for "", url: searches_path do |f| %>
+      <%= f.input :keywords %>
+      <div id="autocomplete">
+      <%= f.input :address %>
+      </div>
+      <%= f.input :distance, collection: Search.distances %>
+      <%= f.submit "Submit" %>
+      <% end %>
   </div>
 </div>

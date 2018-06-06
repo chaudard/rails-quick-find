@@ -9,6 +9,8 @@ class IzacScrappingService
 
   def initialize(keywords) # array of words
     @keywords = keywords
+    self.call
+    fail
   end
 
   def call
@@ -101,5 +103,3 @@ class IzacScrappingService
   end
 
 end
-
-
