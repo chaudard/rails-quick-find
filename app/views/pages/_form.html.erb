@@ -1,0 +1,8 @@
+  <%= simple_form_for "", url: searches_path do |f| %>
+    <%= f.input :keywords %>
+    <div id="autocomplete">
+    <%= f.input :address %>
+    </div>
+    <%= f.input :distance, collection: Search.distances %>
+    <%= f.submit "Submit" %>
+    <% end %>
