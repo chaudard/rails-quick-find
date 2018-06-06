@@ -1,16 +1,16 @@
 class SearchesController < ApplicationController
   def new
-
+    @search = Search.new
   end
 
   def create
-    search_array = params[:search].split
+    search_array = params["keywords"].split
     articles = IzacScrappingService.new([search_array])
     articles.each do |article|
       create_article(article)
     end
   end
-  
+
   def index
   end
 
