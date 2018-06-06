@@ -1,6 +1,6 @@
 function autocomplete() {
   document.addEventListener("DOMContentLoaded", function() {
-    var Address = document.getElementById('address');
+    var Address = document.getElementById('input_address');
 
     if (Address) {
       var autocomplete = new google.maps.places.Autocomplete(Address, { types: [ 'geocode' ] });
