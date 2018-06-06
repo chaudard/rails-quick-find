@@ -5,10 +5,10 @@ class SearchesController < ApplicationController
 
   def create
     @search = Search.new
-    @search.input_address = params["address"]
+    @search.input_address = params["input_address"]
     @search.keywords = params["keywords"]
     @search.distance = params["distance"]
-    @search.save
+    @search.save!
     search_array = params["keywords"].split
     scraps = []
     scraps << IzacScrappingService.new(search_array).call
@@ -20,7 +20,7 @@ class SearchesController < ApplicationController
         create_article(enseigne)
       end
     end
-    @articles = Search.articles
+    @articles = @search.articles
     redirect_to search_articles_path(@search)
 
   end

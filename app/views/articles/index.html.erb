@@ -12,7 +12,7 @@
               <h2><%= article.title %></h2>
             </div>
             <!-- card-user -->
-            <%= link_to "", search_article_path(article), class: "card-link" %>
+            <%= link_to "", search_article_path(article.search, article), class: "card-link" %>
           </div>
         </div>
       <% end %>
