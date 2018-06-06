@@ -9,4 +9,8 @@ class Search < ApplicationRecord
   def self.distances
     [10, 25, 50, 75]
   end
+
+  #def address
+    #self.input_address
+  #end
 end
