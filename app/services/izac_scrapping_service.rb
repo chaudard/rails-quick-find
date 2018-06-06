@@ -14,7 +14,6 @@ class IzacScrappingService
   def call
     full_links = scrap_1
     articles = scrap_2(full_links)
-    p articles
   end
 
   private
