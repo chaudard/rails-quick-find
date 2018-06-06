@@ -1,5 +1,14 @@
 class ArticlesController < ApplicationController
   def index
+    def index
+    @articles = Article.where.not(latitude: nil, longitude: nil)
+
+    @markers = @articles.map do |article|
+      {
+        lat: flat.latitude,
+        lng: flat.longitude#,
+      }
+    end
   end
 
   def show
