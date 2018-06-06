@@ -9,13 +9,11 @@ class IzacScrappingService
 
   def initialize(keywords) # array of words
     @keywords = keywords
-    self.call
-    fail
   end
 
   def call
     full_links = scrap_1
-    articles = scrap_2(full_links)
+    return scrap_2(full_links)
   end
 
   private
@@ -33,9 +31,9 @@ class IzacScrappingService
     # response = RestClient.get(BASE_URL + @keywords, {user_agent: USER_AGENT})
     # html_doc = Nokogiri::HTML(response.body)
 
-    html_doc.search('.product-image').each do |element|
+    html_doc.search('.product-image').each_with_index do |element, index|
       full_link = element.attribute('href').value
-      full_links << full_link
+      full_links << full_link if index < 3
     end
     return full_links
   end
