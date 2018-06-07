@@ -1,5 +1,5 @@
 class Store < ApplicationRecord
-  belongs_to :provider
+  belongs_to :provider, optional: true
   has_many :schedules
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?

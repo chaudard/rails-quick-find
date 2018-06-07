@@ -11,7 +11,7 @@ class StoresScrappingService
   def call
     name_links = scrap_1
     stores = scrap_2(name_links)
-    p stores
+    # p stores
   end
 
   private
@@ -28,7 +28,7 @@ class StoresScrappingService
       name = element.text.strip
       name_link << name
       name_link << link
-      name_links << name_link if index === 0
+      name_links << name_link #if index === 0
     end
     return name_links
   end
