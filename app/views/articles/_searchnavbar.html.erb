@@ -1,0 +1,22 @@
+<div class="navbar-search">
+  <div class="navbar-search-left">
+
+  </div>
+  <div class="navbar-search-form">
+    <%= simple_form_for "", url: searches_path do |f| %>
+      <div class="navbar-search-form-top">
+        <%= f.input :keywords %>
+        <%= f.submit "Submit", class: "btn btn-secondary navbar-search-form-submit" %>
+      </div>
+      <div class="navbar-search-form-bottom">
+        <div id="autocomplete">
+        <%= f.input :input_address %>
+        </div>
+        <%= f.input :distance, collection: Search.distances %>
+      </div>
+    <% end %>
+  </div>
+  <div class="navbar-search-right">
+
+  </div>
+</div>
