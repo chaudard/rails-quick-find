@@ -1,6 +1,14 @@
 <%= render 'searchnavbar' %>
-<div class="container main">
-  <div class="row">
-    <!-- votre code ici svp !!! pour eviter de bouger le footer-->
+
+<div class="wrapper">
+  <div class="container">
+    <div class="show-card-container">
+      <div class="card" style="background-image: url(<%= @article.images.first.url %>);">
+        <div class="card-description">
+          <h2><%= @article.title %></h2>
+        </div>
+      </div>
+    </div>
   </div>
+  <div id="map" data-markers="<%= @markers.to_json %>"></div>
 </div>

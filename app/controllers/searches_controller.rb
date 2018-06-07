@@ -17,18 +17,27 @@ class SearchesController < ApplicationController
       scraps << IzacScrappingService.new(search_array).call
       scraps << JulesScrappingService.new(search_array).call
       scraps <<  CelioScrappingService.new(search_array).call
-
+      # scrap articles for each enseigne
       scraps.each do |scrap|
         scrap.each do |enseigne|
           create_article(enseigne)
         end
       end
+    else
+      @search.input_address = params["input_address"]
+      @search.distance = params["distance"]
+      @search.save
     end
     @articles = @search.articles
+    #maps feed with store
+    # @stores = Store.where.not(latitude: nil, longitude: nil)
+    # @markers = @stores.map { |store| {lat: store.latitude, lng: store.longitude} }
+
     redirect_to search_articles_path(@search)
   end
 
   def index
+
   end
 
 

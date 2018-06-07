@@ -1,18 +1,18 @@
 class ArticlesController < ApplicationController
   def index
-    @articles = Article.all
-    # @articles = Article.where.not(latitude: nil, longitude: nil)
 
-    # @markers = @articles.map do |article|
-    #   {
-    #     lat: flat.latitude,
-    #     lng: flat.longitude
-    #   }
-    # end
+    search = Search.find(params[:search_id])
+    @articles = search.articles
+    @stores = Store.near(search.input_address, search.distance).where.not(latitude: nil, longitude: nil)
+    # to do : Filtrer les enseignes qui ont au moins 1 article en stock
+
+    # Fill Gmaps
+    @markers = @stores.map { |store| {lat: store.latitude, lng: store.longitude} }
 
   end
 
   def show
+    @article = Article.find(params[:id])
   end
 
 
