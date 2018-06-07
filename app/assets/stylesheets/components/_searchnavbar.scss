@@ -1,9 +1,13 @@
 .navbar-search {
   // border: solid 5px black;
-  height: 180px;
-  background-color: gray;
-  display:flex;
+  box-shadow: 5px 8px 8px 0 rgba(0,0,0,0.07),0 1px 0 0 rgba(0,0,0,0.03);
+  transition: all 0.3s ease;
+  height: 170px;
+  padding: 0px 30px;
+  display: flex;
+  align-items: center;
   justify-content: space-between;
+  background-color: white;
 }
 
 .navbar-search-left, .navbar-search-right{
@@ -28,4 +32,16 @@
   // padding-top: 10px;
   height: 40px;
 }
-
+.btn-treehouse {
+  color: #999999;
+  border: 1px solid #999999;
+  padding: 10px 15px;
+  border-radius: 50px;
+  font-weight: bolder;
+  opacity: 0.6;
+}
+.btn-treehouse:hover {
+  opacity: 1;
+  text-decoration: none;
+  color: #999999;
+}
