@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 0px 50px;
-  height: calc(110vh - 110px);
+  height: calc(105vh - 105px);
   color: white;
 }
 .row h1 {
@@ -19,11 +19,14 @@
   border: 1px solid #999999;
   padding: 10px 15px;
   border-radius: 50px;
-  font-weight: lighter;
+  font-weight: bolder;
   opacity: 0.8;
 }
 .btn-medium:hover {
-  opacity: 1;
+  opacity: 1.5;
   text-decoration: none;
   color: #999999;
+}
+.banner {
+  background-size: cover;
 }

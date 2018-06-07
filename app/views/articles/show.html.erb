@@ -1,9 +1,7 @@
 <%= render 'searchnavbar' %>
+
 <div class="wrapper">
-
-
   <div class="container">
-
     <div class="show-card-container">
       <div class="card" style="background-image: url(<%= @article.images.first.url %>);">
         <div class="card-description">
@@ -11,7 +9,6 @@
         </div>
       </div>
     </div>
-
   </div>
   <div id="map" data-markers="<%= @markers.to_json %>"></div>
 </div>

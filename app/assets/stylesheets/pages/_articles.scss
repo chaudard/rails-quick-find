@@ -8,3 +8,6 @@
   position: sticky !important; /* !important to override Gmaps inline CSS */
   top: 0 !important;
 }
+.show {
+  height: calc(110vh - 110px);
+}
