@@ -7,7 +7,7 @@
     <div class="row">
       <% @articles.each do |article| %>
         <div class="col-xs-12 col-sm-6 col-md-4">
-          <div class="card" style="background-image: url(<%= article.images.first.url %>); background-size: cover; background-position: center;">
+          <div class="card" style="background-image: url(<%= article.images.first.url %>);">
             <div class="card-description">
               <h2><%= article.title %></h2>
             </div>
