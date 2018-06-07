@@ -1,1 +1,29 @@
 // Specific CSS for your home-page
+.main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 50px;
+  height: calc(110vh - 110px);
+  color: white;
+}
+.row h1 {
+  font-size: 80px;
+}
+.row h3 {
+  font-size: 14px;
+  text-align: center;
+}
+.btn-medium {
+  color: #999999;
+  border: 1px solid #999999;
+  padding: 10px 15px;
+  border-radius: 50px;
+  font-weight: lighter;
+  opacity: 0.8;
+}
+.btn-medium:hover {
+  opacity: 1;
+  text-decoration: none;
+  color: #999999;
+}
