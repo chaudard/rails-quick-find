@@ -1,3 +1,17 @@
 <%= render 'searchnavbar' %>
-<h1>Articles#show</h1>
-<p>Find me in app/views/articles/show.html.erb   sjdfsmlqj</p>
+<div class="wrapper">
+
+
+  <div class="container">
+
+    <div class="show-card-container">
+      <div class="card" style="background-image: url(<%= @article.images.first.url %>);">
+        <div class="card-description">
+          <h2><%= @article.title %></h2>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div id="map" data-markers="<%= @markers.to_json %>"></div>
+</div>
