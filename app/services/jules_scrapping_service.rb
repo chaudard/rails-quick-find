@@ -48,7 +48,7 @@ class JulesScrappingService
       html_doc = Nokogiri::HTML(html_file)
 
       images = []
-      html_doc.search('.product-image-container a').each do |element|
+      html_doc.search('.product-image-link').each do |element|
         image_url = element.attribute('href').value
         images << image_url
       end

@@ -4,25 +4,28 @@ class SearchesController < ApplicationController
   end
 
   def create
-    @search = Search.new
-    @search.input_address = params["input_address"]
-    @search.keywords = params["keywords"]
-    @search.distance = params["distance"]
-    @search.save!
-    search_array = params["keywords"].split
-    scraps = []
-    scraps << IzacScrappingService.new(search_array).call
-    scraps << JulesScrappingService.new(search_array).call
-    scraps <<  CelioScrappingService.new(search_array).call
+    # @search = Search.new
+    @search = Search.where(keywords: params["keywords"]).first
+    if @search.nil?  #pas besoin de scraper si rech existe déjà
+      @search = Search.new
+      @search.input_address = params["input_address"]
+      @search.keywords = params["keywords"]
+      @search.distance = params["distance"]
+      @search.save!
+      search_array = params["keywords"].split
+      scraps = []
+      scraps << IzacScrappingService.new(search_array).call
+      scraps << JulesScrappingService.new(search_array).call
+      scraps <<  CelioScrappingService.new(search_array).call
 
-    scraps.each do |scrap|
-      scrap.each do |enseigne|
-        create_article(enseigne)
+      scraps.each do |scrap|
+        scrap.each do |enseigne|
+          create_article(enseigne)
+        end
       end
     end
     @articles = @search.articles
     redirect_to search_articles_path(@search)
-
   end
 
   def index
@@ -31,20 +34,16 @@ class SearchesController < ApplicationController
 
   private
 
-  def create_article(article)
-    @article = Article.new #find_or_create_by(url: article[:url])
-    if @article.new_record?
-      @article.url = article[:url]
-      @article.title = article[:title]
-      @article.description = article[:description]
-      @article.price = article[:price].to_i
-      @article.search = @search
-      if @article.save!
-        fill_images(article[:images]) if article[:images] != nil
-        fill_stock(article[:size_stock]) if article[:size_stock] != nil
-      end
-    else
-      return false
+  def create_article(sku)
+    @article = Article.new
+    @article.url = sku[:url]
+    @article.title = sku[:title]
+    @article.description = sku[:description]
+    @article.price = sku[:price].to_i
+    @article.search = @search
+    if @article.save!
+      fill_images(sku[:images]) if sku[:images] != nil
+      fill_stock(sku[:size_stock]) if sku[:size_stock] != nil
     end
   end
 
