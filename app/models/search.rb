@@ -7,7 +7,7 @@ class Search < ApplicationRecord
   after_validation :geocode, if: :will_save_change_to_input_address?
 
   def self.distances
-    [10, 25, 50, 75]
+    ["10km", "25km", "50km", "75km"]
   end
 
   #def address
