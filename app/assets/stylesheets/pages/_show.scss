@@ -1,5 +1,33 @@
 .show-card-container {
+  padding: 20px;
   width: 500px;
   height: 800px;
-  border: solid 5px black
+  border: solid 5px black;
+  width: auto;
+  // display: flex;
+  padding-bottom: 100px;
+  // justify-content: space-between;
+}
+
+.card-details {
+  border: solid 2px black;
+  // width: 500px;
+  // background-color: blue;
+  height: 650px;
+}
+.card-photo {
+  // border: solid 2px black;
+  // width: 500px;
+  // background-color: blue;
+  // width: 500px;
+  height: auto;
+}
+
+.price {
+  border: solid 1px black;
+  height: 200px;
+  text-align: center;
+  padding-top: 70px;
+  font-weight: bold;
+  font-size: 50px;
 }
