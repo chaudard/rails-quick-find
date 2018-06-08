@@ -40,7 +40,7 @@ class SearchesController < ApplicationController
     if @search.nil?  #pas besoin de scraper si rech existe déjà
 
       create_new_search(city)
-      
+
       search_array = params["keywords"].split
 
       # scraps = []
@@ -165,5 +165,5 @@ class SearchesController < ApplicationController
 end
 
 def params_search
-  params.require(:search).permit(:input_address, :distance, :keywords)
+  params.permit(:input_address, :distance, :keywords)
 end

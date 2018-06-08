@@ -17,10 +17,12 @@ class ArticlesController < ApplicationController
     end
     @stores = Store.find(stores.sort.uniq)
     @near_stores = Store.near(search.input_address, search.distance, units: :km).where.not(latitude: nil, longitude: nil)
-    @stores.each do |store|
+
+    @near_stores.each do |store|
       near_stores << store
     end
     stock_stores = @stores && near_stores
+
     @markers = []
 
     # Fill Gmaps with stores having stock
