@@ -7,10 +7,10 @@ class SearchesController < ApplicationController
     # @search = Search.new
     @search = Search.where(keywords: params["keywords"]).first
     if @search.nil?  #pas besoin de scraper si rech existe déjà
-      @search = Search.new
-      @search.input_address = params["input_address"]
-      @search.keywords = params["keywords"]
-      @search.distance = params["distance"]
+      @search = Search.new(params_search)
+      # @search.input_address = params["input_address"]
+      # @search.keywords = params["keywords"]
+      # @search.distance = params["distance"]
       @search.save!
       search_array = params["keywords"].split
       scraps = []
@@ -74,4 +74,8 @@ class SearchesController < ApplicationController
       @stock.save!
     end
   end
+end
+
+def params_search
+  params.require(:search).permit(:input_address, :distance, :keywords)
 end

@@ -1,7 +1,4 @@
 <%= render 'searchnavbar' %>
-<h1>Articles#index</h1>
-
-<!-- ici render la forme de recherche, incluse dans le composant qui est tout en haut de la page -->
 
 <div class="wrapper">
   <div class="container">
@@ -9,11 +6,15 @@
       <% @articles.each do |article| %>
         <div class="col-xs-12 col-sm-6 col-md-4">
           <div class="card" style="background-image: url(<%= article.images.first.url %>);">
-            <div class="card-description">
-              <h2><%= article.title %></h2>
-            </div>
-            <!-- card-user -->
+              <!-- <img class="card-user" src=article.provider.logo> -->
+              <%= image_tag(article.provider.logo, class: "card-user") %>
+              <a class="card-link" href="#" ></a>
             <%= link_to "", search_article_path(article.search, article), class: "card-link" %>
+          </div>
+          <div class="description">
+            <p class="title"><%= article.title %></p>
+            <p class="prix"><%= article.price.to_f / 100 %> €</p>
+            <p><%= article.provider.stores.count %> magasin(s) près de chez vous</p>
           </div>
         </div>
       <% end %>
