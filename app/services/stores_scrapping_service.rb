@@ -28,7 +28,7 @@ class StoresScrappingService
       name = element.text.strip
       name_link << name
       name_link << link
-      name_links << name_link if index === 14
+      name_links << name_link #if index === 30
     end
     return name_links
   end

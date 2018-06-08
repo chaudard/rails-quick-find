@@ -3,14 +3,7 @@ class SearchesController < ApplicationController
     @search = Search.new
   end
 
-  def create_new_search(city)
-      @search = Search.new(params_search)
-      @search.city = city
-      @search.save
-  end
-
   def create
-    city = find_city(params["input_address"])
 
     provider_celio=Provider.where(name: 'celio').first
     provider_jules=Provider.where(name: 'jules').first
@@ -18,10 +11,10 @@ class SearchesController < ApplicationController
 
 
 
-    @search = Search.where(city: city).first
+    @search = Search.where(city: params[:city]).first
     if @search.nil?
 
-      create_new_search(city)
+      # create_new_search(city)
 
       service = StoresScrappingService.new('celio',params["input_address"])
       scrapping_stores = service.call
@@ -39,7 +32,8 @@ class SearchesController < ApplicationController
     @search = Search.where(keywords: params["keywords"]).first
     if @search.nil?  #pas besoin de scraper si rech existe déjà
 
-      create_new_search(city)
+
+      @search = Search.create(params_search)
 
       search_array = params["keywords"].split
 
@@ -150,20 +144,8 @@ class SearchesController < ApplicationController
       end
     end
   end
-
-  # def city(geolocalized_instance)
-  #   geo_localization = "#{geolocalized_instance.latitude},#{geolocalized_instance.longitude}"
-  #   query = Geocoder.search(geo_localization).first
-  #   query.city
-  # end
-
-  def find_city(input_address)
-    query = Geocoder.search(input_address).first
-    query.city
-  end
-
 end
 
 def params_search
-  params.permit(:input_address, :distance, :keywords)
+  params.permit(:input_address, :distance, :keywords, :city)
 end
