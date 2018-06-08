@@ -2,6 +2,7 @@
   <%= f.input :keywords, :placeholder =>"Which cloth?" %>
   <div id="autocomplete">
   <%= f.input :input_address, :label =>"Address" %>
+  <%= f.hidden_field :city, id: 'locality' %>
   </div>
   <%= f.input :distance, collection: Search.distances, default: '10' %>
   <%= submit_tag(value = "QUICKFIND", class: "btn-medium") %>
