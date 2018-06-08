@@ -1,13 +1,13 @@
 .navbar-search {
   // border: solid 5px black;
-  box-shadow: 5px 8px 8px 0 rgba(0,0,0,0.07),0 1px 0 0 rgba(0,0,0,0.03);
+  box-shadow: 5px 10px 10px 0 rgba(0,0,0,0.07),0 1px 0 0 rgba(0,0,0,0.03);
   transition: all 0.3s ease;
-  height: 170px;
-  padding: 0px 30px;
+  height: 150px;
+  padding: 0px 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: white;
+  background-color: #a8a8a8;
 }
 
 .navbar-search-left, .navbar-search-right{
@@ -17,31 +17,45 @@
 
 .navbar-search-form-top {
   display: flex;
+  margin-top: 30px;
   // border: solid 1px white;
 }
 
 .navbar-search-form-bottom {
   display: flex;
+  margin-bottom: 30px;
   // border: solid 1px white;
 }
 
 .navbar-search-form-submit {
   border: solid 1px black;
   margin: 10px;
-  margin-top: 30px;
+  margin-top: 20px;
   // padding-top: 10px;
-  height: 40px;
+  height: 30px;
 }
-.btn-treehouse {
-  color: #999999;
-  border: 1px solid #999999;
-  padding: 10px 15px;
-  border-radius: 50px;
+
+abbr[title="required"] {
+  display: none;
+}
+.icon {
+  color: white;
+  border: 1px solid white;
+  padding: 10px 6px;
+  border-radius: 5px;
   font-weight: bolder;
-  opacity: 0.6;
+  opacity: 0.8;
+  display: flex;
+  height: 40px;
+  width: 90px;
+  font-size: 20px;
+  background-color: transparent;
+  margin-top: 25px;
+  margin-left: 3px;
 }
-.btn-treehouse:hover {
-  opacity: 1;
+
+.icon:hover {
+  opacity: 1.6;
   text-decoration: none;
-  color: #999999;
+  color: white;
 }

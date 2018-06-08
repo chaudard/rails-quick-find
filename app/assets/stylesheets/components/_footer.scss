@@ -1,7 +1,7 @@
 .footer {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   height: 80px;
   padding: 0px 50px;
 }
@@ -10,20 +10,31 @@
   align-items: center;
 }
 .footer-links a {
-  color: #ABADB2;
-  opacity: 0.6;
+  color: white;
+  opacity: 0.8;
   text-decoration: none;
   font-size: 25px;
-  padding: 0px 10px;
+  padding: 0px 20px;
+
 }
 .footer-links a:hover {
   opacity: 1.5;
 }
 .footer-copyright{
   font-size: 14px;
-  color: #ABADB2;
+  color: gray;
+  height: 10px
 }
 .footer-quick {
   font-size: 16px;
-  color: #ABADB2;
+  color: gray;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  margin-bottom: 15px;
+}
+.footer-bar {
+  background-color: gray;
+  display: flex;
+  justify-content: center;
 }
