@@ -16,13 +16,13 @@ class SearchesController < ApplicationController
 
       # create_new_search(city)
 
-      service = StoresScrappingService.new('celio',params["input_address"])
-      scrapping_stores = service.call
-      fill_schedules_stores_table(scrapping_stores, provider_celio)
+      # service = StoresScrappingService.new('celio',params["input_address"])
+      # scrapping_stores = service.call
+      # fill_schedules_stores_table(scrapping_stores, provider_celio)
 
-      service = StoresScrappingService.new('jules',params["input_address"])
-      scrapping_stores = service.call
-      fill_schedules_stores_table(scrapping_stores, provider_jules)
+      # service = StoresScrappingService.new('jules',params["input_address"])
+      # scrapping_stores = service.call
+      # fill_schedules_stores_table(scrapping_stores, provider_jules)
 
       service = StoresScrappingService.new('izac',params["input_address"])
       scrapping_stores = service.call
