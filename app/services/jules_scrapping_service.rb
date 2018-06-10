@@ -31,7 +31,7 @@ class JulesScrappingService
 
     html_doc.search('.thumb-link').each_with_index do |element, index|
       full_link = element.attribute('href').value
-      full_links << full_link if index === 0
+      full_links << full_link if index < 3
     end
     return full_links
   end

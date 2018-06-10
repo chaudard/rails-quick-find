@@ -32,7 +32,7 @@ class CelioScrappingService
 
     html_doc.search('.c-product-v2-fullLink').each_with_index do |element, index|
       full_link = SITE_URL + element.attribute('href').value
-      full_links << full_link if index === 0
+      full_links << full_link if index < 3
     end
     return full_links
   end
