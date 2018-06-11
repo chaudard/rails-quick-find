@@ -1,20 +1,22 @@
 def fill_schedules_stores_table(scrapping_stores, provider)
   scrapping_stores.each_with_index do |scrapping_store, index|
-    store = Store.new
-    store.name = scrapping_store[:name]
-    store.address = scrapping_store[:address]
-    store.phone = scrapping_store[:phone]
-    store.provider = provider
-    store.save!
-    puts "store #{index} saved"
-    # record schedules
-    scrapping_store[:horaires].each do |day, horaire|
-      schedule = Schedule.new
-      schedule.name = day
-      schedule.open_hours = horaire
-      schedule.store = store
-      schedule.save!
-      puts "schedule saved"
+    if Store.where(address: scrapping_store[:address]).count == 0 #pour éviter les doublons
+      store = Store.new
+      store.name = scrapping_store[:name]
+      store.address = scrapping_store[:address]
+      store.phone = scrapping_store[:phone]
+      store.provider = provider
+      store.save!
+      puts "store #{index} saved"
+      # record schedules
+      scrapping_store[:horaires].each do |day, horaire|
+        schedule = Schedule.new
+        schedule.name = day
+        schedule.open_hours = horaire
+        schedule.store = store
+        schedule.save!
+        puts "schedule saved"
+      end
     end
   end
 end
