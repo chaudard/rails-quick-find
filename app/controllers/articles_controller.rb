@@ -20,6 +20,8 @@ class ArticlesController < ApplicationController
       end
     end
     compute_stores_and_markers(@search, stores, nil)
+    @providers = Provider.all
+    @provider = params[:provider]
   end
 
   def show
@@ -29,7 +31,7 @@ class ArticlesController < ApplicationController
       stores << store[:id]
     end
     compute_stores_and_markers(@search, stores, @article)
-    # fail
+    @select_prix = params[:select_prix]
   end
 
 
