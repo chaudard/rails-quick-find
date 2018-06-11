@@ -1,9 +1,9 @@
-<%= simple_form_for "", url: searches_path do |f| %>
-  <%= f.input :keywords, :placeholder =>"Which cloth?" %>
+<%= simple_form_for "", url: searches_path, html: {novalidate: false} do |f| %>
+  <%= f.input :keywords, :label =>"", :placeholder =>"Which cloth?", required: true %>
   <div id="autocomplete">
-  <%= f.input :input_address, :label =>"Address" %>
+  <%= f.input :input_address, :label =>"", :placeholder =>"Where ?", required: true %>
   <%= f.hidden_field :city, id: 'locality' %>
   </div>
-  <%= f.input :distance, collection: Search.distances, default: '10' %>
+  <%= f.input :distance, :label =>"", collection: Search.distances, default: '10' %>
   <%= submit_tag(value = "QUICKFIND", class: "btn-medium") %>
   <% end %>

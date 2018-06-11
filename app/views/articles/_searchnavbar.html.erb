@@ -5,14 +5,14 @@
       <% end %>
   </div>
   <div class="navbar-search-form">
-    <%= simple_form_for "", url: searches_path do |f| %>
+    <%= simple_form_for "", url: searches_path, html: {novalidate: false} do |f| %>
       <div class="navbar-search-form-top">
-        <%= f.input :keywords, :label =>"", :placeholder =>"Which cloth?" %>
+        <%= f.input :keywords, :label =>"", :placeholder =>"Which cloth?", required: true %>
         <button class="icon"><i class="fa fa-search">Search</i></button>
       </div>
       <div class="navbar-search-form-bottom">
         <div id="autocomplete">
-        <%= f.input :input_address, :label =>"", :placeholder =>"Where ?" %>
+        <%= f.input :input_address, :label =>"", :placeholder =>"Where ?", required: true %>
         </div>
         <%= f.input :distance, collection: Search.distances, default: '10', :label =>"" %>
       </div>
