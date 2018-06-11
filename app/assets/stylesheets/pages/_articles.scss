@@ -11,3 +11,9 @@
 .show {
   height: calc(110vh - 110px);
 }
+
+.filtre{
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}

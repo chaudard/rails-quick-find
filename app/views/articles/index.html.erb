@@ -3,6 +3,22 @@
 <div class="wrapper">
   <div class="container">
     <div class="row">
+      <div class ="filtre" >
+        <div class="col-xs-12 col-sm-6">
+          <%= simple_form_for( " ", :url => '/', :method => :get, :remote => true) do |f| %>
+            <%= f.input :select_prix, collection: Article.prix, inline_label: "Trier la liste par prix", selected: @filtre_prix %>
+            <%= f.submit "tri", :style => "display: none" %>
+          <% end %>
+        </div>
+        <div class="col-xs-12 col-sm-6">
+          <%= simple_form_for( " ", :url => '/', :method => :get, :remote => true) do |f| %>
+            <%= f.input :enseigne, collection: @providers, label: "Filtre par enseigne", selected: @provider %>
+            <%= f.submit "filtre", :style => "display: none" %>
+           <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="row">
       <% @articles.each do |article| %>
         <div class="col-xs-12 col-sm-6 col-md-4">
           <div class="card" style="background-image: url(<%= article.images.first.url %>);">
