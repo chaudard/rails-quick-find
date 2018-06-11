@@ -9,25 +9,27 @@ class SearchesController < ApplicationController
     provider_jules=Provider.where(name: 'jules').first
     provider_izac=Provider.where(name: 'izac').first
 
+#plus nécessaire si on fait le big seed de tous les stores de france
 
+    # @search = Search.where(city: params[:city]).first
+    # if @search.nil?
 
-    @search = Search.where(city: params[:city]).first
-    if @search.nil?
+    #   # create_new_search(city)
 
-      # create_new_search(city)
+    #   # demande de gab d'enlever 2 scraps / 3 afin d'éviter le time out
 
-      # service = StoresScrappingService.new('celio',params["input_address"])
-      # scrapping_stores = service.call
-      # fill_schedules_stores_table(scrapping_stores, provider_celio)
+    #   # service = StoresScrappingService.new('celio',params["input_address"])
+    #   # scrapping_stores = service.call
+    #   # fill_schedules_stores_table(scrapping_stores, provider_celio)
 
-      # service = StoresScrappingService.new('jules',params["input_address"])
-      # scrapping_stores = service.call
-      # fill_schedules_stores_table(scrapping_stores, provider_jules)
+    #   # service = StoresScrappingService.new('jules',params["input_address"])
+    #   # scrapping_stores = service.call
+    #   # fill_schedules_stores_table(scrapping_stores, provider_jules)
 
-      service = StoresScrappingService.new('izac',params["input_address"])
-      scrapping_stores = service.call
-      fill_schedules_stores_table(scrapping_stores, provider_izac)
-    end
+    #   service = StoresScrappingService.new('izac',params["input_address"])
+    #   scrapping_stores = service.call
+    #   fill_schedules_stores_table(scrapping_stores, provider_izac)
+    # end
 
     @search = Search.where(keywords: params["keywords"]).first
     if @search.nil?  #pas besoin de scraper si rech existe déjà
@@ -51,21 +53,27 @@ class SearchesController < ApplicationController
       # association des articles avec un provider
 
       # celio
-      scrap = CelioScrappingService.new(search_array).call
-      scrap.each do |enseigne|
-        create_article(enseigne, provider_celio)
-      end
-
-      # jules
-      scrap = JulesScrappingService.new(search_array).call
-      scrap.each do |enseigne|
-        create_article(enseigne, provider_jules)
+      unless provider_celio.nil?
+        scrap = CelioScrappingService.new(search_array).call
+        scrap.each do |enseigne|
+          create_article(enseigne, provider_celio)
+        end
       end
 
       # izac
-      scrap = IzacScrappingService.new(search_array).call
-      scrap.each do |enseigne|
-        create_article(enseigne, provider_izac)
+      unless provider_izac.nil?
+        scrap = IzacScrappingService.new(search_array).call
+        scrap.each do |enseigne|
+          create_article(enseigne, provider_izac)
+        end
+      end
+
+      # jules
+      unless provider_jules.nil?
+        scrap = JulesScrappingService.new(search_array).call
+        scrap.each do |enseigne|
+          create_article(enseigne, provider_jules)
+        end
       end
 
       # ------------------------------------
