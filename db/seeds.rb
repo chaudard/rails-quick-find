@@ -70,6 +70,8 @@ provider_izac=Provider.where(name: 'izac').first
 puts 'destroy all stores'
 Store.destroy_all # destroy schedules at the same time
 
+start = DateTime.now
+
 puts 'start creating stores'
 # s = CitiesScrappingService.new
 # french_cities = s.call
@@ -193,6 +195,8 @@ french_cities.each do |city|
     fill_schedules_stores_table(scrapping_stores, provider_jules)
   end
 end
+time_difference_in_sec = (DateTime.now.to_time.to_i - start.to_time.to_i).abs
+puts "time spent : #{time_difference_in_sec}"
 puts 'finished'
 
 
