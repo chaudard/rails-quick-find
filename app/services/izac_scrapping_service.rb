@@ -48,10 +48,12 @@ class IzacScrappingService
       size_stock = {}
 
       article[:url] = url
-      html_doc.search('.thumb-link img').each do |element|
+      html_doc.search('.gallery-image').each do |element|
+      # html_doc.search('.thumb-link img').each do |element|
         image = element.attribute('src').value
         images << image
       end
+      images.sort.uniq
 
       html_doc.search('.product-name').each do |element|
         article[:title] = cleaning(element.children.text)
@@ -101,3 +103,6 @@ class IzacScrappingService
   end
 
 end
+
+service = IzacScrappingService.new(['polo','bleu'])
+service.call
