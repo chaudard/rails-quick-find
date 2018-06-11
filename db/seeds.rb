@@ -53,20 +53,20 @@ provider_jules.base_url = 'http://www.jules.com/fr/index' #pas utilisé
 provider_jules.save!
 
 
-puts 'start creating stores'
-puts 'stores celio lille'
-service = StoresScrappingService.new('celio','Lille')
-scrapping_stores = service.call
-fill_schedules_stores_table(scrapping_stores, provider_celio)
-puts 'stores izac lille'
-service = StoresScrappingService.new('izac','Lille')
-scrapping_stores = service.call
-fill_schedules_stores_table(scrapping_stores, provider_izac)
-puts 'stores jules lille'
-service = StoresScrappingService.new('jules','Lille')
-scrapping_stores = service.call
-fill_schedules_stores_table(scrapping_stores, provider_jules)
-puts 'finished'
+# puts 'start creating stores'
+# puts 'stores celio lille'
+# service = StoresScrappingService.new('celio','Lille')
+# scrapping_stores = service.call
+# fill_schedules_stores_table(scrapping_stores, provider_celio)
+# puts 'stores izac lille'
+# service = StoresScrappingService.new('izac','Lille')
+# scrapping_stores = service.call
+# fill_schedules_stores_table(scrapping_stores, provider_izac)
+# puts 'stores jules lille'
+# service = StoresScrappingService.new('jules','Lille')
+# scrapping_stores = service.call
+# fill_schedules_stores_table(scrapping_stores, provider_jules)
+# puts 'finished'
 
 
 

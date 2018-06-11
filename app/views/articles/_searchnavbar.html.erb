@@ -1,18 +1,20 @@
 <div class="navbar-search">
   <div class="navbar-search-left">
-    <%= image_tag "http://res.cloudinary.com/dwoel6eny/image/upload/v1528385857/T.jpg", height:70  %>
+    <%= link_to root_path do %>
+      <%= image_tag "http://res.cloudinary.com/dwoel6eny/image/upload/v1528466966/finaly.png", height:150, width: 200  %>
+      <% end %>
   </div>
   <div class="navbar-search-form">
     <%= simple_form_for "", url: searches_path do |f| %>
       <div class="navbar-search-form-top">
-        <%= f.input :keywords %>
-        <%= f.submit "QuickFind", class: "btn-treehouse navbar-search-form-submit" %>
+        <%= f.input :keywords, :label =>"", :placeholder =>"Which cloth?" %>
+        <button class="icon"><i class="fa fa-search">Search</i></button>
       </div>
       <div class="navbar-search-form-bottom">
         <div id="autocomplete">
-        <%= f.input :input_address %>
+        <%= f.input :input_address, :label =>"", :placeholder =>"Where ?" %>
         </div>
-        <%= f.input :distance, collection: Search.distances %>
+        <%= f.input :distance, collection: Search.distances, default: '10', :label =>"" %>
       </div>
     <% end %>
   </div>
