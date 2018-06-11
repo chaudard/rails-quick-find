@@ -1,72 +1,206 @@
 def fill_schedules_stores_table(scrapping_stores, provider)
   scrapping_stores.each_with_index do |scrapping_store, index|
-    store = Store.new
-    store.name = scrapping_store[:name]
-    store.address = scrapping_store[:address]
-    store.phone = scrapping_store[:phone]
-    store.provider = provider
-    store.save!
-    puts "store #{index} saved"
-    # record schedules
-    scrapping_store[:horaires].each do |day, horaire|
-      schedule = Schedule.new
-      schedule.name = day
-      schedule.open_hours = horaire
-      schedule.store = store
-      schedule.save!
-      puts "schedule saved"
+    if Store.where(address: scrapping_store[:address]).count == 0 #pour éviter les doublons
+      store = Store.new
+      store.name = scrapping_store[:name]
+      store.address = scrapping_store[:address]
+      store.phone = scrapping_store[:phone]
+      store.provider = provider
+      store.save!
+      puts "store #{index} saved"
+      # record schedules
+      scrapping_store[:horaires].each do |day, horaire|
+        schedule = Schedule.new
+        schedule.name = day
+        schedule.open_hours = horaire
+        schedule.store = store
+        schedule.save!
+        puts "schedule saved"
+      end
     end
   end
 end
 
 
-puts 'destroy schedule, store, provider if development'
+# puts 'destroy store, provider if development'
 if Rails.env = 'development'
-  Schedule.destroy_all
-  Store.destroy_all
-  Provider.destroy_all
+  # Provider.destroy_all
 end
 
+provider_celio=Provider.where(name: 'celio').first
+provider_jules=Provider.where(name: 'jules').first
+provider_izac=Provider.where(name: 'izac').first
+
 puts 'start creating providers'
-puts 'provider Celio'
-provider_celio = Provider.new
-provider_celio.name = 'celio'
-# provider_celio.logo = 'data:image/png;base64,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'
-provider_celio.logo = 'https://upload.wikimedia.org/wikipedia/commons/c/c6/Logo_celio_2016.svg'
-provider_celio.website = 'https://www.celio.com/'
-provider_celio.base_url = 'https://www.celio.com/' #pas utilisé
-provider_celio.save!
-puts 'provider Izac'
-provider_izac = Provider.new
-provider_izac.name = 'izac'
-provider_izac.logo = 'https://medias.oas.io/medias/2018/01/09/17/b44e041807b497c8401b67dd9bcbe068-300x240.jpg'
-provider_izac.website = 'https://www.izac.fr/fr/'
-provider_izac.base_url = 'https://www.izac.fr/fr/' #pas utilisé
-provider_izac.save!
-puts 'provider Izac'
-provider_jules = Provider.new
-provider_jules.name = 'jules'
-# provider_jules.logo = 'data:image/png;base64,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'
-provider_jules.logo = 'http://les-zed.com/leszed/images/nouveau-jules.jpg'
-provider_jules.website = 'http://www.jules.com/fr/index'
-provider_jules.base_url = 'http://www.jules.com/fr/index' #pas utilisé
-provider_jules.save!
+if provider_celio.nil?
+  puts 'provider celio'
+  provider_celio = Provider.new
+  provider_celio.name = 'celio'
+  provider_celio.logo = 'https://upload.wikimedia.org/wikipedia/commons/c/c6/Logo_celio_2016.svg'
+  provider_celio.website = 'https://www.celio.com/'
+  provider_celio.base_url = 'https://www.celio.com/' #pas utilisé
+  provider_celio.save!
+end
+if provider_izac.nil?
+  puts 'provider izac'
+  provider_izac = Provider.new
+  provider_izac.name = 'izac'
+  provider_izac.logo = 'https://medias.oas.io/medias/2018/01/09/17/b44e041807b497c8401b67dd9bcbe068-300x240.jpg'
+  provider_izac.website = 'https://www.izac.fr/fr/'
+  provider_izac.base_url = 'https://www.izac.fr/fr/' #pas utilisé
+  provider_izac.save!
+end
+if provider_jules.nil?
+  puts 'provider jules'
+  provider_jules = Provider.new
+  provider_jules.name = 'jules'
+  provider_jules.logo = 'http://les-zed.com/leszed/images/nouveau-jules.jpg'
+  provider_jules.website = 'http://www.jules.com/fr/index'
+  provider_jules.base_url = 'http://www.jules.com/fr/index' #pas utilisé
+  provider_jules.save!
+  puts 'creating providers finished'
+end
+puts 'finish creating providers'
+
+provider_celio=Provider.where(name: 'celio').first
+provider_jules=Provider.where(name: 'jules').first
+provider_izac=Provider.where(name: 'izac').first
+
+# big seed of cities
+puts 'destroy all stores'
+Store.destroy_all # destroy schedules at the same time
+
+start = DateTime.now
+
+puts 'start creating stores'
+# s = CitiesScrappingService.new
+# french_cities = s.call
+french_cities = ["Paris",
+                 "Marseille",
+                 "Lyon",
+                 "Toulouse",
+                 "Nice",
+                 "Nantes",
+                 "Strasbourg",
+                 "Montpellier",
+                 "Bordeaux",
+                 "Lille"]
+                 # "Rennes",
+                 # "Reims",
+                 # "Le Havre",
+                 # "Saint-Etienne",
+                 # "Toulon",
+                 # "Grenoble",
+                 # "Angers",
+                 # "Dijon",
+                 # "Brest",
+                 # "Le Mans",
+                 # "Nimes",
+                 # "Aix-en-Provence",
+                 # "Clermont-Ferrand",
+                 # "Tours",
+                 # "Amiens",
+                 # "Limoges",
+                 # "Villeurbanne",
+                 # "Metz",
+                 # "Besancon",
+                 # "Perpignan",
+                 # "Orleans",
+                 # "Caen",
+                 # "Mulhouse",
+                 # "Boulogne-Billancourt",
+                 # "Rouen",
+                 # "Nancy",
+                 # "Argenteuil",
+                 # "Montreuil",
+                 # "Saint-Denis",
+                 # "Roubaix",
+                 # "Avignon",
+                 # "Tourcoing",
+                 # "Poitiers",
+                 # "Nanterre",
+                 # "Creteil",
+                 # "Versailles",
+                 # "Pau",
+                 # "Courbevoie",
+                 # "Vitry-sur-Seine",
+                 # "Asnieres-sur-Seine",
+                 # "Colombes",
+                 # "Aulnay-sous-Bois",
+                 # "La Rochelle",
+                 # "Rueil-Malmaison",
+                 # "Antibes",
+                 # "Saint-Maur-des-Fosses",
+                 # "Calais",
+                 # "Champigny-sur-Marne",
+                 # "Aubervilliers",
+                 # "Beziers",
+                 # "Bourges",
+                 # "Cannes",
+                 # "Saint-Nazaire",
+                 # "Dunkerque",
+                 # "Quimper",
+                 # "Valence",
+                 # "Colmar",
+                 # "Drancy",
+                 # "Merignac",
+                 # "Ajaccio",
+                 # "Levallois-Perret",
+                 # "Troyes",
+                 # "Neuilly-sur-Seine",
+                 # "Issy-les-Moulineaux",
+                 # # "Villeneuve-d'Ascq",
+                 # "Noisy-le-Grand",
+                 # "Antony",
+                 # "Niort",
+                 # "Lorient",
+                 # "Sarcelles",
+                 # "Chambery",
+                 # "Saint-Quentin",
+                 # "Pessac",
+                 # "Venissieux",
+                 # "Cergy",
+                 # "La Seyne-sur-Mer",
+                 # "Clichy",
+                 # "Beauvais",
+                 # "Cholet",
+                 # "Hyeres",
+                 # "Ivry-sur-Seine",
+                 # "Montauban",
+                 # "Vannes",
+                 # "La Roche-sur-Yon",
+                 # "Charleville-Mezieres",
+                 # "Pantin",
+                 # "Laval",
+                 # "Maisons-Alfort",
+                 # "Bondy",
+                 # "Evry"]
+french_cities.each do |city|
+  unless provider_celio.nil?
+    puts "stores celio #{city}"
+    service = StoresScrappingService.new('celio',"#{city}")
+    scrapping_stores = service.call
+    fill_schedules_stores_table(scrapping_stores, provider_celio)
+  end
+  unless provider_izac.nil?
+    puts "stores izac #{city}"
+    service = StoresScrappingService.new('izac',"#{city}")
+    scrapping_stores = service.call
+    fill_schedules_stores_table(scrapping_stores, provider_izac)
+  end
+  unless provider_jules.nil?
+  puts "stores jules #{city}"
+    service = StoresScrappingService.new('jules',"#{city}")
+    scrapping_stores = service.call
+    fill_schedules_stores_table(scrapping_stores, provider_jules)
+  end
+end
+time_difference_in_sec = (DateTime.now.to_time.to_i - start.to_time.to_i).abs
+puts "time spent : #{time_difference_in_sec}"
+puts 'finished'
 
 
-# puts 'start creating stores'
-# puts 'stores celio lille'
-# service = StoresScrappingService.new('celio','Lille')
-# scrapping_stores = service.call
-# fill_schedules_stores_table(scrapping_stores, provider_celio)
-# puts 'stores izac lille'
-# service = StoresScrappingService.new('izac','Lille')
-# scrapping_stores = service.call
-# fill_schedules_stores_table(scrapping_stores, provider_izac)
-# puts 'stores jules lille'
-# service = StoresScrappingService.new('jules','Lille')
-# scrapping_stores = service.call
-# fill_schedules_stores_table(scrapping_stores, provider_jules)
-# puts 'finished'
+
 
 
 
