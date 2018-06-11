@@ -104,5 +104,5 @@ class IzacScrappingService
 
 end
 
-service = IzacScrappingService.new(['polo','bleu'])
-service.call
+# service = IzacScrappingService.new(['polo','bleu'])
+# service.call
