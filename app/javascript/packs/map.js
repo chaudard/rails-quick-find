@@ -17,8 +17,8 @@ if (mapElement) { // don't try to build a map if there's no div#map to inject in
 }
 autocomplete();
 
-const mapCard = document.getElementById('card-list')
-console.log(mapCard)
-mapCard.addEventListener("mouseover", (event) => {
-  console.log(event.srcElement);
-});
+// const mapCard = document.getElementById('card-list')
+// console.log(mapCard)
+// mapCard.addEventListener("mouseover", (event) => {
+//   console.log(event.srcElement);
+// });

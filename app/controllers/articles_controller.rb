@@ -63,7 +63,11 @@ class ArticlesController < ApplicationController
       next if store.provider == nil
       next if store.provider.articles == nil
       @markers_stores << store
-      @markers << {lat: store.latitude, lng: store.longitude, title: store.name, icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'}
+      @markers << {lat: store.latitude,
+                   lng: store.longitude,
+                   title: store.name,
+                   enseigne: store.provider.name,
+                   icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'}
     end
   end
 
