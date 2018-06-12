@@ -39,7 +39,8 @@
               </select>
             </div>
             <div class="informations">
-              <p>Celio Euralille, pas loin du fast food burking king et des concurrents comme Izac et Jules</p>
+              <p>Location : </p>
+              <p><%= @stores.first.address %></p>
             </div>
           </div>
       </div>
@@ -47,6 +48,6 @@
 
 
   </div>
-  <div id="map" data-markers="<%= @markers.to_json %>"></div>
+  <div id="map" data-markers="<%= @markers.to_json %>" data-store="<%= @store.to_json %>" data-start="<%= @start.to_json %>"></div>
 </div>
 <%= render 'pages/footer' %>
