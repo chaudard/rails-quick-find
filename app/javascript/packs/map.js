@@ -39,6 +39,7 @@ if (showpage != null) {
   strokeOpacity: 0.6,
   strokeWeight: 6
   });
+}
 
 const colCards = document.querySelectorAll('.col-card');
 colCards.forEach((colCard) => {
