@@ -32,6 +32,10 @@ class ArticlesController < ApplicationController
     end
     compute_stores_and_markers(@search, stores, @article)
     @select_prix = params[:select_prix]
+    @store = []
+    @start = []
+    @store << { lat: @markers.first[:lat], lng: @markers.first[:lng]}
+    @start << { lat: @search.latitude, lng: @search.longitude }
   end
 
 

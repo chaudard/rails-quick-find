@@ -26,6 +26,20 @@ if (mapElement) { // don't try to build a map if there's no div#map to inject in
 }
 autocomplete();
 
+const showpage = document.getElementById('selsize');
+const store = JSON.parse(mapElement.dataset.store);
+const start = JSON.parse(mapElement.dataset.start);
+console.log(map)
+if (showpage != null) {
+  map.drawRoute({
+  origin: [start[0].lat, start[0].lng],
+  destination: [store[0].lat, store[0].lng],
+  travelMode: 'driving',
+  strokeColor: '#131540',
+  strokeOpacity: 0.6,
+  strokeWeight: 6
+  });
+
 const colCards = document.querySelectorAll('.col-card');
 colCards.forEach((colCard) => {
   colCard.addEventListener("mouseover", event => {
