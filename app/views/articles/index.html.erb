@@ -28,7 +28,7 @@
     </div>
     <div class="row cards-panel">
       <% @articles.each do |article| %>
-        <div class="col-xs-12 col-sm-6 col-md-4 col-card">
+        <div class="col-xs-12 col-sm-6 col-md-3 col-card">
           <div class="card" style="background-image: url(<%= article.images.first.url %>);">
               <%= image_tag(article.provider.logo, class: "card-user") %>
               <a class="card-link" href="#" ></a>
