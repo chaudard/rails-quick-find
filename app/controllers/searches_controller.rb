@@ -81,6 +81,7 @@ class SearchesController < ApplicationController
     else
       @search.input_address = params["input_address"]
       @search.distance = params["distance"]
+       # fail
       @search.save
     end
 
@@ -90,6 +91,7 @@ class SearchesController < ApplicationController
     # @markers = @stores.map { |store| {lat: store.latitude, lng: store.longitude} }
 
     redirect_to search_articles_path(@search)
+    # fail
   end
 
   def index

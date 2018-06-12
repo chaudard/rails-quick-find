@@ -5,7 +5,7 @@ class Article < ApplicationRecord
   has_many :stocks, dependent: :destroy
 
   def self.prix
-    ["croissant", "decroissant"]
+    ["-","croissant", "decroissant"] # '-' = pas de tri sur le prix
   end
 end
 
