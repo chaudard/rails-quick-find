@@ -20,7 +20,7 @@
     </div>
     <div class="row">
       <% @articles.each do |article| %>
-        <div class="col-xs-12 col-sm-6 col-md-4">
+        <div class="col-xs-12 col-sm-6 col-md-3">
           <div class="card" style="background-image: url(<%= article.images.first.url %>);">
               <!-- <img class="card-user" src=article.provider.logo> -->
               <%= image_tag(article.provider.logo, class: "card-user") %>

@@ -2,49 +2,50 @@
 
 <div class="wrapper">
   <div class="container">
-
-
-
-
-
     <div class="row">
-      <div class="col-xs-12 col-sm-6 card-photo">
-        <%= image_tag @article.images.first.url, width: 500 %>
-      </div>
-      <div class="col-xs-12 col-sm-6 card-details">
-        <div class="price">
-          <p>
-            <%= @article.price.to_f / 100 %> €
-          </p>
+        <div class="col-xs-12 col-sm-6">
+          <%= image_tag @article.images.first.url, class: "img-responsive" %>
         </div>
-
-        <div class="article-description">
-          <div class="select-size">
-            <%= simple_form_for :articles, url: '/' do |f| %>
-            <%= f.select :sizes, collection: @article.stocks.map(&:size) %>
-            <%= f.submit "Verifier ici le stock" %>
-            <% end %>
+        <div class="col-xs-12 col-sm-6 card-details">
+          <div class="article-description">
+            <h2><%= @article.title %></h2>
+            <p><%= @article.description %></p>
+            <div class="price">
+              <p><%= @article.price.to_f / 100 %> €</p>
+            </div>
+            <div id="vendor">
+              merchant website :
+            <a href=<%= @article.url %> title="" target="_blank"><%= image_tag @article.provider.logo, width: 100 %></a>
+            </div>
+            <div class="form-group select-size">
+              <label for="selsize">Available sizes:</label>
+              <select class="selectpicker" id="selsize" data-width="auto">
+                <%=  @article.stocks.each do |stock| %>
+                  <% if stock.available == true %>
+                    <option value=stock.size><%= stock.size %></option>
+                  <% else %>
+                    <option value=stock.size disabled><%= stock.size %></option>
+                  <% end %>
+                <% end %>
+              </select>
+            </div>
+            <div class="select-store">
+              <!-- <label for="selstore">Select your store</label> -->
+              <p>Your stores nearby :</p>
+              <select class="selectpicker" id="selstore">
+                <% @markers_stores.each_with_index do |s, index| %>
+                  <option value=<%= index %>><%= s.address %></option>
+                <% end %>
+              </select>
+            </div>
+            <div class="informations">
+              <p>Celio Euralille, pas loin du fast food burking king et des concurrents comme Izac et Jules</p>
+            </div>
           </div>
-          <div class="select-store">
-            Sélectionnez ici votre magasin
-            <select>
-              <% @markers_stores.each_with_index do |s, index| %>
-                <option value=<%= index %>><%= s.address %></option>
-              <% end %>
-            </select>
-          </div>
-          <p>
-            <%= image_tag @article.provider.logo, width: 400 %>
-          </p>
-          <p>
-            <%= @article.description %>
-          </p>
-        </div>
       </div>
     </div>
-    <div class="informations">
 
-    </div>
+
   </div>
   <div id="map" data-markers="<%= @markers.to_json %>"></div>
 </div>
