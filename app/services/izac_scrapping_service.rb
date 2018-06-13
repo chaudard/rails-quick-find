@@ -73,7 +73,7 @@ class IzacScrappingService
 
       html_doc.search('.swatch-link-158').each do |element|
         size = cleaning(element.text).strip
-        size = size[0,3].strip
+        size = size[0,10].strip
         size_stock[size] = true
         if element.parent.attributes["class"].value.include? "indispo"
           size_stock[size] = false

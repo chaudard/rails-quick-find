@@ -19,12 +19,10 @@
           </div>
         </div>
         <div class="form-group">
-          <%= f.input :distance, collection: Search.distances, :label =>"", selected: @search.distance %> km
-
+          <%= f.input :distance, collection: Search.distances, :label =>"", label_method: :label, value_method: :value, selected: @search.distance %>
         </div>
         <div class="form-group">
           <%= f.submit 'Search', class: "btn btn-primary" %>
-          <!-- <button class="icon"><i class="fa fa-search">Search</i></button> -->
         </div>
       <% end %>
 
@@ -32,62 +30,3 @@
   </div>
 </div>
 
-<!-- Version avec des row / cols
-<div class="wrapper">
-  <div class="row">
-    <div class="col-xs-12 col-sm-3">
-      <div class="navbar-search-left">
-        <%= link_to root_path do %>
-        <%= image_tag "http://res.cloudinary.com/dwoel6eny/image/upload/v1528466966/finaly.png", height:150, width: 200  %>
-      <% end %>
-      </div>
-    </div>
-    <div class="col-xs-12 col-sm-9">
-      <div class="row">
-      <%= simple_form_for "", url: searches_path, html: {novalidate: false} do |f| %>
-          <div class="col-xs-12 col-sm-3">
-          <%= f.input :keywords, :label =>"", :placeholder =>"Which cloth?", required: true, input_html: {value: @search.keywords } %>
-        </div>
-          <div class="col-xs-12 col-sm-3">
-          <div id="autocomplete">
-          <%= f.input :input_address, :label =>"", :placeholder =>"Where ?", required: true, input_html: {value: @search.input_address } %>
-          </div>
-        </div>
-        <div class="col-xs-12 col-sm-3 inline">
-          <%= f.input :distance, collection: Search.distances, :label =>"", selected: @search.distance %>
-
-        </div>
-        <div class="col-xs-12 col-sm-3">
-          <button class="icon"><i class="fa fa-search">Search</i></button>
-        </div>
-      <% end %>
-     </div>
-    </div>
-  </div>
-</div>
-
-<!-- Version non responsive
-<div class="navbar-search">
-  <div class="navbar-search-left">
-    <%= link_to root_path do %>
-      <%= image_tag "http://res.cloudinary.com/dwoel6eny/image/upload/v1528466966/finaly.png", height:150, width: 200  %>
-      <% end %>
-  </div>
-  <div class="navbar-search-form">
-    <%= simple_form_for "", url: searches_path, html: {novalidate: false} do |f| %>
-      <div class="navbar-search-form-top">
-        <%= f.input :keywords, :label =>"", :placeholder =>"Which cloth?", required: true, input_html: {value: @search.keywords } %>
-        <button class="icon"><i class="fa fa-search">Search</i></button>
-      </div>
-      <div class="navbar-search-form-bottom">
-        <div id="autocomplete">
-        <%= f.input :input_address, :label =>"", :placeholder =>"Where ?", required: true, input_html: {value: @search.input_address } %>
-        </div>
-        <%= f.input :distance, collection: Search.distances, :label =>"", selected: @search.distance %>
-      </div>
-    <% end %>
-  </div>
-  <div class="navbar-search-right">
-  </div>
-</div>
--->
