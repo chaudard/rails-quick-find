@@ -1,6 +1,8 @@
 class ArticlesController < ApplicationController
   before_action :set_search_and_near_stores, only: [:index, :show]
 
+  include ActionView::Helpers::NumberHelper
+
   def index
     # listons les providers qui se trouvent dans le rayon de recherche
     near_stores_providers = []
