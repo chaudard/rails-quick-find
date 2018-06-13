@@ -1,6 +1,8 @@
 class ArticlesController < ApplicationController
   before_action :set_search_and_near_stores, only: [:index, :show]
 
+  include ActionView::Helpers::NumberHelper
+
   def index
     # listons les providers qui se trouvent dans le rayon de recherche
     near_stores_providers = []
@@ -36,6 +38,8 @@ class ArticlesController < ApplicationController
     @start = []
     @store << { lat: @markers.first[:lat], lng: @markers.first[:lng]}
     @start << { lat: @search.latitude, lng: @search.longitude }
+    # @prix = number_to_currency(12.45, locale: :fr, precision: 2, strip_insignificant_zeros: true)
+
   end
 
 
