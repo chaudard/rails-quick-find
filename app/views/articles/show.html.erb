@@ -2,10 +2,12 @@
 
 <div class="wrapper">
   <div class="container">
+    <div class="row">
+      <p class ="button-back"><a href="javascript:history.back()">Back to list</a></p>
+    </div>
     <div class="row showrow">
       <div class="col-xs-12 col-md-6">
-        <p class ="button-back"><b><a href="javascript:history.back()">Back to list</a></p></b><br/>
-        <%= image_tag @article.images.first.url, class: "img-responsive" %>
+        <%= image_tag @article.images.first.url, class: "img-responsive", width: "500" %>
       </div>
       <div class="col-xs-12 col-md-6 card-details">
         <div class="article-description">
@@ -14,9 +16,9 @@
           <div class="price">
             <p><%= number_to_currency((@article.price.to_f / 100), locale: :fr, precision: 2, strip_insignificant_zeros: true) %> </p>
           </div>
-          <div id="vendor">
-            merchant website :
-          <a href=<%= @article.url %> title="" target="_blank"><%= image_tag @article.provider.logo, width: 100 %></a>
+          <div id="buy">
+<!--           <a href=<%= @article.url %> title="" target="_blank" class: "btn btn-primary" width: 100 %></a> -->
+            <a class="btn btn-success" href="<%= @article.url %>" target="_blank" role="button">VENDOR SITE</a>
           </div>
           <div class="form-group select-size">
             <label for="selsize">Available sizes : </label>
@@ -29,6 +31,9 @@
                 <% end %>
               <% end %>
             </select>
+          </div>
+          <div id="vendor">
+            <p><%= image_tag @article.provider.logo, class: "img-responsive center-block", width: "150" %></p>
           </div>
         </div>
       </div>
@@ -45,7 +50,7 @@
           </div>
           <div class="informations">
            <div class="separator">
-             <h2 id="store-address"><%= @markers_stores.first.address %></h2>
+             <h3 id="store-address"><%= @markers_stores.first.address %></h3>
            </div>
            <div class="open-hours">
              <p>Open Hours :</p>
@@ -58,7 +63,6 @@
           </div>
       </div>
     </div>
-
-
   </div>
 </div>
+<%= render 'pages/footer' %>

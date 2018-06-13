@@ -47,6 +47,7 @@
   // height: 400px;
   // border: solid 5px black;
   text-align: center;
+  // justify-content: space-around;
 }
 
 .select-store {
@@ -116,3 +117,19 @@ a:hover {
   color: #3A3C44;
 }
 
+#buy {
+a {
+  border-radius: 8px;
+  padding: 20px;
+  text-decoration: none !important;
+  font-weight: bold;
+}
+}
+
+h3 {
+  font-size: 20px !important;
+}
+
+.button-back {
+  font-weight: bold;
+}
