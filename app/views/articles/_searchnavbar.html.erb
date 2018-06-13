@@ -1,10 +1,9 @@
-
 <div class="wrapper navbar-search">
   <div class="row">
     <div class="col-xs-12 col-sm-3">
       <div class="navbar-search-left">
         <%= link_to root_path do %>
-        <%= image_tag "http://res.cloudinary.com/dwoel6eny/image/upload/v1528466966/finaly.png", height:114, width: 150  %>
+        <%= image_tag "test.jpg", height:95, width: 150  %>
       <% end %>
       </div>
     </div>
@@ -19,14 +18,15 @@
           </div>
         </div>
         <div class="form-group">
-          <%= f.input :distance, collection: Search.distances, :label =>"", label_method: :label, value_method: :value, selected: @search.distance %>
+          <%= f.input :distance, collection: Search.distances, :label =>"", selected: @search.distance %> km
+
         </div>
         <div class="form-group">
           <%= f.submit 'Search', class: "btn btn-primary" %>
+          <!-- <button class="icon"><i class="fa fa-search">Search</i></button> -->
         </div>
       <% end %>
 
     </div>
   </div>
 </div>
-
