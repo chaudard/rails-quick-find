@@ -1,6 +1,6 @@
 import { autocomplete } from '../components/autocomplete';
 import GMaps from 'gmaps/gmaps.js';
-
+autocomplete();
 const days = ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'];
 
 const getChildIndex = (child) => {
@@ -71,8 +71,8 @@ if (mapElement) { // don't try to build a map if there's no div#map to inject in
   } else {
     map.fitLatLngBounds(markers);
   }
-}
-autocomplete();
+
+
 
 const colCards = document.querySelectorAll('.col-card');
 colCards.forEach((colCard) => {
@@ -143,3 +143,4 @@ const showDatasStore = () => {
 }
 
 showDatasStore();
+}
