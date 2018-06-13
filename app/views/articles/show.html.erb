@@ -31,23 +31,29 @@
           </div>
           <div class="select-store">
             <!-- <label for="selstore">Select your store</label> -->
-            <p>Your stores nearby :</p>
-            <select class="selectpicker" id="selstore">
-              <% @markers_stores.each_with_index do |s, index| %>
-                <option value=<%= index %>><%= s.address %></option>
-              <% end %>
-            </select>
+<!--               <p>Your stores nearby :</p>
+              <select class="selectpicker" id="selstore">
+                <% @markers_stores.each_with_index do |s, index| %>
+                  <option value=<%= index %>><%= s.address %></option>
+                <% end %>
+              </select> -->
+            <p>Distance : <span id="store-distance"></span> km</p>
           </div>
           <div class="informations">
-            <p>Location : </p>
-            <p><%= @stores.first.address %></p>
+              <p>Location : </p>
+              <p id="store-address"><%= @markers_stores.first.address %></p>
+              <p id="store-schedules">
+<!--                 <% @markers_stores.first.schedules.each do |schedule| %>
+                <%= schedule.name %> : <%= schedule.open_hours %><br>
+                <% end %> -->
+              </p>
           </div>
         </div>
       </div>
     </div>
     <div class="row showrow">
       <div class="col-xs-12">
-        <div id="map" data-markers="<%= @markers.to_json %>" data-store="<%= @store.to_json %>" data-start="<%= @start.to_json %>"></div>
+        <div id="map" data-markers="<%= @markers.to_json %>" data-stores="<%= @markers_stores.to_json %>" data-distances="<%= @distances.to_json %>" data-start="<%= @start.to_json %>"></div>
       </div>
     </div>
   </div>
