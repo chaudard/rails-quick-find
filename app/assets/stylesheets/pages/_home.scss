@@ -1,14 +1,11 @@
 // Specific CSS for your home-page
 .main {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0px 50px;
-  height: calc(110vh - 177px);
+  height: calc(91.7vh);
   color: white;
 }
 .row h1 {
   font-size: 80px;
+  margin-top: 50px;
 }
 .row h3 {
   font-size: 14px;
@@ -21,7 +18,6 @@
   border-radius: 5px;
   font-weight: bolder;
   opacity: 0.8;
-  margin-left: 110px;
   background-color: transparent;
 }
 .btn-medium:hover {
@@ -31,6 +27,8 @@
 }
 .banner {
   background-size: cover;
+  height: 100%;
+  width: 100%;
 }
 .footer-home {
   display: flex;
