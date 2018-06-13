@@ -6,7 +6,7 @@
       <div class="col-xs-12 col-md-6">
         <%= image_tag @article.images.first.url, class: "img-responsive" %>
       </div>
-      <div class="col-xs-12 col-md-6 lg-4 card-details">
+      <div class="col-xs-12 col-md-6 card-details">
         <div class="article-description">
           <h2><%= @article.title %></h2>
           <p><%= @article.description %></p>
@@ -18,7 +18,7 @@
           <a href=<%= @article.url %> title="" target="_blank"><%= image_tag @article.provider.logo, width: 100 %></a>
           </div>
           <div class="form-group select-size">
-            <label for="selsize">Available sizes:</label>
+            <label for="selsize">Available sizes : </label>
             <select class="selectpicker" id="selsize" data-width="auto">
               <%=  @article.stocks.each do |stock| %>
                 <% if stock.available == true %>
@@ -29,33 +29,35 @@
               <% end %>
             </select>
           </div>
-          <div class="select-store">
-            <!-- <label for="selstore">Select your store</label> -->
-<!--               <p>Your stores nearby :</p>
-              <select class="selectpicker" id="selstore">
-                <% @markers_stores.each_with_index do |s, index| %>
-                  <option value=<%= index %>><%= s.address %></option>
-                <% end %>
-              </select> -->
-            <p>Distance : <span id="store-distance"></span> km</p>
-          </div>
-          <div class="informations">
-              <p>Location : </p>
-              <p id="store-address"><%= @markers_stores.first.address %></p>
-              <p id="store-schedules">
-<!--                 <% @markers_stores.first.schedules.each do |schedule| %>
-                <%= schedule.name %> : <%= schedule.open_hours %><br>
-                <% end %> -->
-              </p>
-          </div>
         </div>
       </div>
-    </div>
-    <div class="row showrow">
-      <div class="col-xs-12">
+     </div>
+   </div>
+   <div class="container">
+     <div class="row">
+      <div class="col-xs-12 col-md-6">
         <div id="map" data-markers="<%= @markers.to_json %>" data-stores="<%= @markers_stores.to_json %>" data-distances="<%= @distances.to_json %>" data-start="<%= @start.to_json %>"></div>
       </div>
+      <div class="col-xs-12 col-md-6 card-details">
+        <div class="select-store">
+            <h2>Distance : <span id="store-distance"></span> km</h2>
+          </div>
+          <div class="informations">
+           <div class="separator">
+             <h2 id="store-address"><%= @markers_stores.first.address %></h2>
+           </div>
+           <div class="open-hours">
+             <p>Open Hours :</p>
+             <div id="line"></div>
+             <div class="separator">
+               <p id="store-schedules"></p>
+             </div>
+             <div id="line"></div>
+           </div>
+          </div>
+      </div>
     </div>
+
+
   </div>
 </div>
-<%= render 'pages/footer' %>
