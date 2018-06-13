@@ -31,3 +31,20 @@
 #select_enseigne {
 
 }
+.buttontop {
+  color: #a8a8a8;
+  border: 1px solid #a8a8a8;
+  padding: 0px 10px;
+  border-radius: 2px;
+  font-weight: bolder;
+  opacity: 0.8;
+  background-color: transparent;
+  text-decoration: none;
+  justify-content: center;
+
+}
+.buttontop:hover {
+  opacity: 1.2;
+  text-decoration: none;
+  color: #a8a8a8;
+}
