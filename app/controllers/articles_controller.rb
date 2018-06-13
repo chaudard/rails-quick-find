@@ -32,10 +32,6 @@ class ArticlesController < ApplicationController
     end
     compute_stores_and_markers(@search, stores, @article)
     @select_prix = params[:select_prix]
-    @store = []
-    @start = []
-    @store << { lat: @markers.first[:lat], lng: @markers.first[:lng]}
-    @start << { lat: @search.latitude, lng: @search.longitude }
   end
 
 
@@ -51,6 +47,24 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def sort_markers_stores
+    hash_distances = {}
+    @markers_stores.each_with_index do |store, index|
+      distance = Geocoder::Calculations.distance_between([store.latitude,store.longitude],[@search.latitude,@search.longitude])
+      hash_distance = {}
+      hash_distance[:store] = store
+      hash_distance[:distance] = distance
+      hash_distances[index.to_s] = hash_distance
+    end
+    sort_results = hash_distances.sort_by { |k, v| v[:distance] }
+    @markers_stores = []
+    @markers_distances = []
+    sort_results.each do |sort_result|
+      @markers_stores << sort_result[1][:store]
+      @markers_distances << sort_result[1][:distance]
+    end
+  end
+
   def compute_stores_and_markers(search, stores, article)
     stock_stores = []
     @stores = Store.find(stores.sort.uniq)
@@ -58,7 +72,7 @@ class ArticlesController < ApplicationController
     unless article.nil?
       stock_stores = stock_stores.select {|s| s.provider == article.provider}
     end
-    # fail
+
     @markers = []
     @markers_stores = [] #les stores qui auront un marker sur la map
     # Fill Gmaps with stores having stock
@@ -67,12 +81,30 @@ class ArticlesController < ApplicationController
       next if store.provider == nil
       next if store.provider.articles == nil
       @markers_stores << store
+    end
+
+    # faisons un tri des @markers_stores, de manière à les lister du plus proche au plus éloigné
+
+    sort_markers_stores
+
+    @markers_stores.each_with_index do |store, index|
+      distance = @markers_distances[index]
       @markers << {lat: store.latitude,
                    lng: store.longitude,
+                   distance: distance,
+                   phone: store.phone,
+                   address: store.address,
                    title: store.name,
                    enseigne: store.provider.name,
-                   icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'}
+                   logo: store.provider.logo,
+                   schedules: store.schedules,
+                   posinlist: index,
+                   # icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
+                   icon: 'https://findicons.com/files/icons/951/google_maps/32/clothes.png' # https://findicons.com/pack/951/google_maps/7
+                  }
     end
+    @start = []
+    @start << { lat: @search.latitude, lng: @search.longitude }
   end
 
   def params_article
