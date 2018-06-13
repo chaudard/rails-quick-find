@@ -37,11 +37,21 @@
    <div class="container">
      <div class="row">
       <div class="col-xs-12 col-md-6">
+        <div>
+          <strong>Mode of Travel: </strong>
+          <select id="mode-travel">
+            <option value="driving">Driving</option>
+            <option value="walking">Walking</option>
+            <option value="bicycling">Bicycling</option>
+            <option value="transit">Transit</option>
+          </select>
+          <em id="time-travel">my time travel</em>
+        </div>
         <div id="map" data-markers="<%= @markers.to_json %>" data-stores="<%= @markers_stores.to_json %>" data-distances="<%= @distances.to_json %>" data-start="<%= @start.to_json %>"></div>
       </div>
       <div class="col-xs-12 col-md-6 card-details">
         <div class="select-store">
-            <h2>Distance : <span id="store-distance"></span> km</h2>
+            <h2>Distance : <span id="store-distance"></span></h2>
           </div>
           <div class="informations">
            <div class="separator">
@@ -58,7 +68,5 @@
           </div>
       </div>
     </div>
-
-
   </div>
 </div>
