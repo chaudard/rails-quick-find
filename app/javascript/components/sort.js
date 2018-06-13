@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
   selectEnseigneDropDownList = document.getElementById('select_enseigne');
 
   if (selectPriceDropDownList) {
-    selectPriceDropDownList.addEventListener("click", event => {
+    selectPriceDropDownList.addEventListener("change", event => {
       selectPriceValue = selectPriceDropDownList.value;
       if (selectEnseigneDropDownList) {
         selectEnseigneValue = selectEnseigneDropDownList.value;
@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   if (selectEnseigneDropDownList) {
-    selectEnseigneDropDownList.addEventListener("click", event => {
+    selectEnseigneDropDownList.addEventListener("change", event => {
       selectEnseigneValue = selectEnseigneDropDownList.value;
       if (selectPriceDropDownList) {
         selectPriceValue = selectPriceDropDownList.value;
