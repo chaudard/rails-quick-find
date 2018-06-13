@@ -44,6 +44,6 @@
       <% end %>
     </div>
   </div>
-  <div id="map" data-markers="<%= @markers.to_json %>"></div>
+  <div id="map" data-markers="<%= @markers.to_json %>" data-stores="<%= @markers_stores.to_json %>" data-distances="<%= @distances.to_json %>" data-start="<%= @start.to_json %>"></div>
 </div>
 <%= render 'pages/footer' %>
