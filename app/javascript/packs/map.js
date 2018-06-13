@@ -87,27 +87,124 @@ if (mapElement) { // don't try to build a map if there's no div#map to inject in
     }
   }
 
-  const showDatasStore = () => {
-    if (showpage != null) {
-      const store = stores[indexMarker];
+  const updateRoute = (modeTravel, address) => {
       map.cleanRoute();
       map.drawRoute({
       origin: [start[0].lat, start[0].lng],
-      destination: store.address,
-      travelMode: 'driving',
+      destination: address,
+      travelMode: modeTravel,
       strokeColor: '#131540',
       strokeOpacity: 0.6,
       strokeWeight: 6
       });
+  }
+
+  const updateTravelDatas = (modeTravel) => {
+      const marker = markers[indexMarker];
+      // console.log(modeTravel);
       const storeDistance = document.getElementById('store-distance');
-      const distance = store.distance.toFixed(2);
+      const timeTravelEl = document.getElementById('time-travel');
+      let distance = '0 km'
+      let travelTime = '0'
+      switch(modeTravel) {
+          case 'driving':
+              distance = marker.traveldatas.driving.distance
+              travelTime = marker.traveldatas.driving.time
+              break;
+          case 'walking':
+              distance = marker.traveldatas.walking.distance
+              travelTime = marker.traveldatas.walking.time
+              break;
+          case 'bicycling':
+              distance = marker.traveldatas.bicycling.distance
+              travelTime = marker.traveldatas.bicycling.time
+              break;
+          case 'transit':
+              distance = marker.traveldatas.transit.distance
+              travelTime = marker.traveldatas.transit.time
+              break;
+          default:
+              distance = marker.traveldatas.driving.distance
+              travelTime = marker.traveldatas.driving.time
+      }
       storeDistance.textContent = distance;
+      timeTravelEl.textContent = travelTime;
+      updateRoute(modeTravel, marker.address);
+  }
+
+  const modeTravelEl = document.getElementById('mode-travel');
+  modeTravelEl.addEventListener('change', (event) => {
+    const modeTravel = modeTravelEl.value;
+    updateTravelDatas(modeTravel);
+  })
+
+  const showDatasStore = () => {
+    if (showpage != null) {
+      const store = stores[indexMarker];
+      const marker = markers[indexMarker]; //je dois passer par le marker pour les horaires car je n'ai pas l'info dans le store
+      const modeTravelEl = document.getElementById('mode-travel');
+      const modeTravel = modeTravelEl.value;
+      // console.log(modeTravel);
+
+      // updateRoute(modeTravel, store.address);
+
+      // map.cleanRoute();
+      // map.drawRoute({
+      // origin: [start[0].lat, start[0].lng],
+      // destination: store.address,
+      // travelMode: modeTravel,
+      // strokeColor: '#131540',
+      // strokeOpacity: 0.6,
+      // strokeWeight: 6
+      // });
+
+      updateTravelDatas(modeTravel);
+
+      // const storeDistance = document.getElementById('store-distance');
+
+      // // nouveau code pour les distances
+
+      // let distance = '0 km'
+      // let travelTime = '0'
+      // switch(modeTravel) {
+      //     case 'driving':
+      //         distance = marker.traveldatas.driving.distance
+      //         travelTime = marker.traveldatas.driving.time
+      //         break;
+      //     case 'walking':
+      //         distance = marker.traveldatas.walking.distance
+      //         travelTime = marker.traveldatas.walking.time
+      //         break;
+      //     case 'bicycling':
+      //         distance = marker.traveldatas.bicycling.distance
+      //         travelTime = marker.traveldatas.bicycling.time
+      //         break;
+      //     case 'transit':
+      //         distance = marker.traveldatas.transit.distance
+      //         travelTime = marker.traveldatas.transit.time
+      //         break;
+      //     default:
+      //         distance = marker.traveldatas.driving.distance
+      //         travelTime = marker.traveldatas.driving.time
+      // }
+      // // console.log(marker.traveldatas);
+      // // console.log(marker.traveldatas.driving.distance)
+
+      // // ancien code pour les distances
+
+      // // const distance = store.distance.toFixed(2);
+
+      // // *******************************************
+
+      // storeDistance.textContent = distance;
+
+
+
       const storeAddress = document.getElementById('store-address');
       storeAddress.textContent = store.address;
       const storeSchedules = document.getElementById('store-schedules');
       storeSchedules.innerHTML = '';
       const dayIndex = new Date().getDay();
-      const marker = markers[indexMarker]; //je dois passer par le marker pour les horaires car je n'ai pas l'info dans le store
       marker.schedules.forEach((schedule) => {
         if (schedule.name.toLowerCase() == days[dayIndex].toLowerCase()){ // on met en gras le jour actuel
           storeSchedules.insertAdjacentHTML("afterbegin", '<strong>' + schedule.name + ' : ' + schedule.open_hours + '</strong><br>');

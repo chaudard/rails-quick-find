@@ -37,7 +37,7 @@
                   <option value=<%= index %>><%= s.address %></option>
                 <% end %>
               </select> -->
-            <p>Distance : <span id="store-distance"></span> km</p>
+            <p>Distance : <span id="store-distance"></span></p>
           </div>
           <div class="informations">
               <p>Location : </p>
@@ -53,6 +53,16 @@
     </div>
     <div class="row showrow">
       <div class="col-xs-12">
+        <div>
+          <strong>Mode of Travel: </strong>
+          <select id="mode-travel">
+            <option value="driving">Driving</option>
+            <option value="walking">Walking</option>
+            <option value="bicycling">Bicycling</option>
+            <option value="transit">Transit</option>
+          </select>
+          <em id="time-travel">my time travel</em>
+        </div>
         <div id="map" data-markers="<%= @markers.to_json %>" data-stores="<%= @markers_stores.to_json %>" data-distances="<%= @distances.to_json %>" data-start="<%= @start.to_json %>"></div>
       </div>
     </div>
