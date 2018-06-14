@@ -163,9 +163,8 @@ if (mapElement) { // don't try to build a map if there's no div#map to inject in
           storeSchedules.insertAdjacentHTML("afterbegin", schedule.name + ' : ' + schedule.open_hours + '<br>');
         }
       });
-      storeSchedules.insertAdjacentHTML("beforeend", 'Tel : ' + marker.phone + '<br>');
-
-
+      const storePhone = document.getElementById('store-phone');
+      storePhone.insertAdjacentHTML("beforeend", marker.phone + '<br>');
       const navigationEl = document.getElementById('navigation');
       const url = 'https://www.google.com/maps/dir/?api=1&origin='+start[0].lat+','+start[0].lng+'&destination='+marker.lat+','+marker.lng;
       navigationEl.innerHTML = '';

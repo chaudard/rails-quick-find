@@ -3,8 +3,10 @@
 
 <div class="wrapper">
   <div class="container">
+    <div id="backlist">
+      <a href="javascript:history.back()"><p class="glyphicon glyphicon-arrow-left" aria-hidden="true"><span class="button-back"> Back to list</span></p></a>
+    </div>
     <div class="row">
-      <p class ="button-back"><a href="javascript:history.back()">Back to list</a></p>
     </div>
     <div class="row showrow">
       <div class="col-xs-12 col-md-6">
@@ -43,36 +45,40 @@
    <div class="container">
      <div class="row">
       <div class="col-xs-12 col-md-6">
+        <div class="mapshow" id="map" data-markers="<%= @markers.to_json %>" data-stores="<%= @markers_stores.to_json %>" data-distances="<%= @distances.to_json %>" data-start="<%= @start.to_json %>"></div>
+      </div>
+      <div class="col-xs-12 col-md-6 card-details">
         <div>
-          <strong>Mode of Travel: </strong>
+          <strong>Travel Mode: </strong>
           <select id="mode-travel">
             <option value="driving">Driving</option>
             <option value="walking">Walking</option>
             <option value="bicycling">Bicycling</option>
             <option value="transit">Transit</option>
           </select>
-          <em id="time-travel">my time travel</em>
-          <span id="navigation"></span>
         </div>
-        <div id="map" data-markers="<%= @markers.to_json %>" data-stores="<%= @markers_stores.to_json %>" data-distances="<%= @distances.to_json %>" data-start="<%= @start.to_json %>"></div>
-      </div>
-      <div class="col-xs-12 col-md-6 card-details">
         <div class="select-store">
-            <h2>Distance : <span id="store-distance"></span></h2>
-          </div>
-          <div class="informations">
+          <h3><i class="fas fa-stopwatch"></i><h3>
+          <h3><span id="time-travel">my time travel</span></h3>
+            
+          <h3><i class="fas fa-shipping-fast"></i></h3>
+          <h3><span id="store-distance"></span></h3>
+        </div>
+        <div id="navigation"></div>
+        <div class="informations">
+         <div class="separator">
+           <h3 id="store-address"><%= @markers_stores.first.address %></h3>
+           <p><i class="fas fa-phone">&nbsp;</i><span id="store-phone"></span></p>
+         </div>
+         <div class="open-hours">
+           <p>Open Hours :</p>
+           <div id="line"></div>
            <div class="separator">
-             <h3 id="store-address"><%= @markers_stores.first.address %></h3>
+             <p id="store-schedules"></p>
            </div>
-           <div class="open-hours">
-             <p>Open Hours :</p>
-             <div id="line"></div>
-             <div class="separator">
-               <p id="store-schedules"></p>
-             </div>
-             <div id="line"></div>
-           </div>
-          </div>
+           <div id="line"></div>
+         </div>
+        </div>
       </div>
     </div>
   </div>
