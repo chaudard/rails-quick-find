@@ -5,7 +5,7 @@
       <div class="col-xs-12 col-sm-3">
         <div class="navbar-search-left center-img">
           <%= link_to root_path do %>
-          <%= image_tag "http://res.cloudinary.com/dwoel6eny/image/upload/v1528466966/finaly.png", height:114, width: 150  %>
+          <%= image_tag "http://res.cloudinary.com/dwoel6eny/image/upload/v1528979620/finaly_2.png", height:114, width: 150  %>
         <% end %>
         </div>
       </div>
@@ -23,7 +23,7 @@
             <%= f.input :distance, collection: Search.distances, :label =>"", label_method: :label, value_method: :value, selected: @search.distance %>
           </div>
           <div class="form-group center">
-            <%= f.submit 'Find', class: "btn btn-search" %>
+            <button class="icon"><i class=" btn fa fa-search"> Search</i></button>
           </div>
         <% end %>
       </div>
