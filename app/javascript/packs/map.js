@@ -164,6 +164,7 @@ if (mapElement) { // don't try to build a map if there's no div#map to inject in
         }
       });
       const storePhone = document.getElementById('store-phone');
+      storePhone.innerHTML = '';
       storePhone.insertAdjacentHTML("beforeend", marker.phone + '<br>');
       const navigationEl = document.getElementById('navigation');
       const url = 'https://www.google.com/maps/dir/?api=1&origin='+start[0].lat+','+start[0].lng+'&destination='+marker.lat+','+marker.lng;
