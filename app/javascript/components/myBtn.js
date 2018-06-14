@@ -1,15 +1,18 @@
-window.onscroll = function() {scrollFunction()};
+$(document).ready(function(){
 
-function scrollFunction() {
-  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-    document.getElementById("Btnscroll").style.display = "block";
-  } else {
-    document.getElementById("Btnscroll").style.display = "none";
-  }
-}
+    //Check to see if the window is top if not then display button
+    $(window).scroll(function(){
+        if ($(this).scrollTop() > 100) {
+            $('.scrollToTop').fadeIn();
+        } else {
+            $('.scrollToTop').fadeOut();
+        }
+    });
 
-// When the user clicks on the button, scroll to the top of the document
-window.topFunction = function () {
-  document.body.scrollTop = 0;
-  document.documentElement.scrollTop = 0;
-}
+    //Click event to scroll to top
+    $('.scrollToTop').click(function(){
+        $('html, body').animate({scrollTop : 0},800);
+        return false;
+    });
+
+});
