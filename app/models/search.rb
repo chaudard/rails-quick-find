@@ -7,7 +7,7 @@ class Search < ApplicationRecord
   after_validation :geocode, if: :will_save_change_to_input_address?
 
   def self.distances
-    ["1", "5", "10", "25"].map { |d| OpenStruct.new(value: d, label: "#{d} km")}
+    ["5", "10", "20", "50"].map { |d| OpenStruct.new(value: d, label: "#{d} km")}
   end
 
   #def address
