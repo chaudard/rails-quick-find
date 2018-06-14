@@ -1,31 +1,32 @@
 
 <div class="wrapper navbar-search">
-  <div class="row">
-    <div class="col-xs-12 col-sm-3">
-      <div class="navbar-search-left">
-        <%= link_to root_path do %>
-        <%= image_tag "http://res.cloudinary.com/dwoel6eny/image/upload/v1528466966/finaly.png", height:114, width: 150  %>
-      <% end %>
+  <div class="container">
+    <div class="row center-block">
+      <div class="col-xs-12 col-sm-3">
+        <div class="navbar-search-left center-img">
+          <%= link_to root_path do %>
+          <%= image_tag "http://res.cloudinary.com/dwoel6eny/image/upload/v1528466966/finaly.png", height:114, width: 150  %>
+        <% end %>
+        </div>
       </div>
-    </div>
-    <div class="col-xs-12 col-sm-9 inline">
-      <%= simple_form_for "", url: searches_path, html: {class: "form-inline", novalidate: false} do |f| %>
-          <div class="form-group">
-          <%= f.input :keywords, :label =>"", :placeholder =>"Which cloth?", required: true, input_html: {value: @search.keywords } %>
-        </div>
-          <div class="form-group">
-          <div id="autocomplete">
-          <%= f.input :input_address, :label =>"", :placeholder =>"Where ?", required: true, input_html: {value: @search.input_address } %>
+      <div class="col-xs-12 col-sm-9 inline">
+        <%= simple_form_for "", url: searches_path, html: {class: "form-inline", novalidate: false} do |f| %>
+            <div class="form-group">
+            <%= f.input :keywords, :label =>"", :placeholder =>"Which cloth?", required: true, input_html: {value: @search.keywords } %>
           </div>
-        </div>
-        <div class="form-group">
-          <%= f.input :distance, collection: Search.distances, :label =>"", label_method: :label, value_method: :value, selected: @search.distance %>
-        </div>
-        <div class="form-group">
-          <%= f.submit 'Search', class: "btn btn-primary" %>
-        </div>
-      <% end %>
-
+            <div class="form-group">
+            <div id="autocomplete">
+            <%= f.input :input_address, :label =>"", :placeholder =>"Where ?", required: true, input_html: {value: @search.input_address } %>
+            </div>
+          </div>
+          <div class="form-group">
+            <%= f.input :distance, collection: Search.distances, :label =>"", label_method: :label, value_method: :value, selected: @search.distance %>
+          </div>
+          <div class="form-group center">
+            <%= f.submit 'Find', class: "btn btn-search" %>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

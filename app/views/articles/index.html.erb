@@ -4,7 +4,7 @@
   <div class="container">
     <div class="row">
       <div class ="filtre" >
-        <div class="col-xs-12 col-sm-4">
+        <div class="col-xs-12 col-sm-3 col-md-4">
           <label for="select_prix">prix:</label>
           <select id="select_prix">
             <% Article.prix.each_with_index do |sort, index| %>
@@ -12,7 +12,7 @@
             <% end %>
           </select>
         </div>
-        <div class="col-xs-12 col-sm-4">
+        <div class="col-xs-12 col-sm-3 col-md-4">
           <!-- pour le tri/provider, listons seulement les providers qui ont actuellement un article dans la liste des articles -->
           <!-- mettons par defaut la valeur de non tri -->
           <% current_enseignes = ["-"] %>
@@ -26,7 +26,7 @@
         </div>
       </div>
     </div>
-    <div class="row">
+    <div class="row block-cards">
       <div class="col-xs-12 col-sm-8">
         <div class="row cards-panel">
           <% @articles.each do |article| %>
