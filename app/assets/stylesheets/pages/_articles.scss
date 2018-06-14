@@ -18,10 +18,10 @@
 
 .filtre{
   width: 100%;
+  text-align: center;
   // display: flex;
   // justify-content: space-around;
-  margin-left: 20%;
-  margin-top: 20px;
+  margin-top: 40px;
 }
 
 #select_enseigne{
@@ -47,4 +47,8 @@
   opacity: 1.2;
   text-decoration: none;
   color: #a8a8a8;
+}
+
+.block-cards {
+  margin-top: 20px;
 }
