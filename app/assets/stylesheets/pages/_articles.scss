@@ -31,22 +31,27 @@
 #select_enseigne {
 
 }
-.buttontop {
-  color: #a8a8a8;
-  border: 1px solid #a8a8a8;
-  padding: 0px 10px;
-  border-radius: 2px;
+#myBtn {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  font-size: 12px;
   font-weight: bolder;
+  border-color: black;
+  outline: none;
+  background-color: white;
+  color: black;
+  cursor: pointer;
+  padding: 8px;
+  border: 1px solid #a8a8a8;
   opacity: 0.8;
-  background-color: transparent;
-  text-decoration: none;
-  justify-content: center;
-
 }
-.buttontop:hover {
+#myBtn:hover {
   opacity: 1.2;
   text-decoration: none;
-  color: #a8a8a8;
+  color: black;
 }
 
 .block-cards {
