@@ -153,12 +153,14 @@ if (mapElement) { // don't try to build a map if there's no div#map to inject in
       updateTravelDatas(modeTravel);
       const storeAddress = document.getElementById('store-address');
       storeAddress.textContent = store.address;
+      const schedulesTodayEl = document.getElementById('open-hours-today');
       const storeSchedules = document.getElementById('store-schedules');
       storeSchedules.innerHTML = '';
       const dayIndex = new Date().getDay();
       marker.schedules.forEach((schedule) => {
         if (schedule.name.toLowerCase() == days[dayIndex].toLowerCase()){ // on met en gras le jour actuel
           storeSchedules.insertAdjacentHTML("afterbegin", '<strong>' + schedule.name + ' : ' + schedule.open_hours + '</strong><br>');
+          schedulesTodayEl.textContent = schedule.open_hours;
         } else {
           storeSchedules.insertAdjacentHTML("afterbegin", schedule.name + ' : ' + schedule.open_hours + '<br>');
         }
@@ -168,7 +170,6 @@ if (mapElement) { // don't try to build a map if there's no div#map to inject in
       storePhone.insertAdjacentHTML("beforeend", marker.phone + '<br>');
       const navigationEl = document.getElementById('navigation');
       const url = 'https://www.google.com/maps/dir/?api=1&origin='+start[0].lat+','+start[0].lng+'&destination='+marker.lat+','+marker.lng;
-      console.log(url)
       navigationEl.href = url;
     }
   }
