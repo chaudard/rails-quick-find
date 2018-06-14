@@ -1,3 +1,4 @@
+<title>QuickFind Article</title>
 <%= render 'searchnavbar' %>
 
 <div class="wrapper">
@@ -59,9 +60,11 @@
         <div class="select-store">
           <h3><i class="fas fa-stopwatch"></i><h3>
           <h3><span id="time-travel">my time travel</span></h3>
+            
           <h3><i class="fas fa-shipping-fast"></i></h3>
           <h3><span id="store-distance"></span></h3>
         </div>
+        <div id="navigation"></div>
         <div class="informations">
          <div class="separator">
            <h3 id="store-address"><%= @markers_stores.first.address %></h3>
