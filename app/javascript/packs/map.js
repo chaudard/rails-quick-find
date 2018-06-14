@@ -174,5 +174,9 @@ if (mapElement) { // don't try to build a map if there's no div#map to inject in
     }
   }
 
+  if (showpage) {
+    mapElement.style.height  = "60vh";
+  }
+
   showDatasStore();
 }
