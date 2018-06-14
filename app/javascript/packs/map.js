@@ -153,24 +153,24 @@ if (mapElement) { // don't try to build a map if there's no div#map to inject in
       updateTravelDatas(modeTravel);
       const storeAddress = document.getElementById('store-address');
       storeAddress.textContent = store.address;
+      const schedulesTodayEl = document.getElementById('open-hours-today');
       const storeSchedules = document.getElementById('store-schedules');
       storeSchedules.innerHTML = '';
       const dayIndex = new Date().getDay();
       marker.schedules.forEach((schedule) => {
         if (schedule.name.toLowerCase() == days[dayIndex].toLowerCase()){ // on met en gras le jour actuel
           storeSchedules.insertAdjacentHTML("afterbegin", '<strong>' + schedule.name + ' : ' + schedule.open_hours + '</strong><br>');
+          schedulesTodayEl.textContent = schedule.open_hours;
         } else {
           storeSchedules.insertAdjacentHTML("afterbegin", schedule.name + ' : ' + schedule.open_hours + '<br>');
         }
       });
       const storePhone = document.getElementById('store-phone');
+      storePhone.innerHTML = '';
       storePhone.insertAdjacentHTML("beforeend", marker.phone + '<br>');
       const navigationEl = document.getElementById('navigation');
       const url = 'https://www.google.com/maps/dir/?api=1&origin='+start[0].lat+','+start[0].lng+'&destination='+marker.lat+','+marker.lng;
-      navigationEl.innerHTML = '';
-      // navigationEl.insertAdjacentHTML("beforeend", '<a href="'+url+'" target="_blank"><img src="http://img2.downloadapk.net/2/73/2a47db_0.png" width="30" height="30"/></a>');
-      // navigationEl.insertAdjacentHTML("beforeend", '<a href="'+url+'" target="_blank"><i class="fas fa-camera-retro"></i></a>');
-      navigationEl.insertAdjacentHTML("beforeend", '<a href="'+url+'" target="_blank"><img src="http://images.frandroid.com/wp-content/uploads/2017/06/logo-google-maps-2017.png" width="30" height="30"/></a>');
+      navigationEl.href = url;
     }
   }
 

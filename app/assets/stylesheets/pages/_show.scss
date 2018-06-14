@@ -57,6 +57,8 @@
   // padding-right: 100px;
   overflow: hidden;
   text-overflow: ellipsis;
+  display: flex;
+  justify-content: center;
 
   p{
     font-size: 16px;
@@ -137,4 +139,12 @@ h3 {
 
 #backlist {
   margin-top: 5px;
+}
+
+#travel-mode {
+  margin-top: 20px;
+}
+
+#navigation {
+  margin-top: 20px;
 }
