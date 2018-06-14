@@ -31,7 +31,7 @@
 #select_enseigne {
 
 }
-#Btnscroll {
+.scrollToTop {
   display: none;
   position: fixed;
   bottom: 162px;
@@ -46,8 +46,9 @@
   padding: 8px;
   border: 1px solid #a8a8a8;
   opacity: 0.8;
+  text-decoration: none
 }
-#Btnscroll:hover {
+.scrollToTop:hover {
   opacity: 1.2;
   text-decoration: none;
   color: black;
