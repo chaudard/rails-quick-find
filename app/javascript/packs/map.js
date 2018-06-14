@@ -126,16 +126,23 @@ if (mapElement) { // don't try to build a map if there's no div#map to inject in
               distance = marker.traveldatas.driving.distance
               travelTime = marker.traveldatas.driving.time
       }
+      const errorMessage = 'sorry, api limited!'
+      if (distance == errorMessage) {
+        const store = stores[indexMarker];
+        distance = store.distance.toFixed(2) + ' km';
+      }
       storeDistance.textContent = distance;
       timeTravelEl.textContent = travelTime;
       updateRoute(modeTravel, marker.address);
   }
 
   const modeTravelEl = document.getElementById('mode-travel');
-  modeTravelEl.addEventListener('change', (event) => {
-    const modeTravel = modeTravelEl.value;
-    updateTravelDatas(modeTravel);
-  })
+  if (modeTravelEl) {
+    modeTravelEl.addEventListener('change', (event) => {
+      const modeTravel = modeTravelEl.value;
+      updateTravelDatas(modeTravel);
+    })
+  }
 
   const showDatasStore = () => {
     if (showpage != null) {
@@ -157,6 +164,14 @@ if (mapElement) { // don't try to build a map if there's no div#map to inject in
         }
       });
       storeSchedules.insertAdjacentHTML("beforeend", 'Tel : ' + marker.phone + '<br>');
+
+
+      const navigationEl = document.getElementById('navigation');
+      const url = 'https://www.google.com/maps/dir/?api=1&origin='+start[0].lat+','+start[0].lng+'&destination='+marker.lat+','+marker.lng;
+      navigationEl.innerHTML = '';
+      // navigationEl.insertAdjacentHTML("beforeend", '<a href="'+url+'" target="_blank"><img src="http://img2.downloadapk.net/2/73/2a47db_0.png" width="30" height="30"/></a>');
+      // navigationEl.insertAdjacentHTML("beforeend", '<a href="'+url+'" target="_blank"><i class="fas fa-camera-retro"></i></a>');
+      navigationEl.insertAdjacentHTML("beforeend", '<a href="'+url+'" target="_blank"><img src="http://images.frandroid.com/wp-content/uploads/2017/06/logo-google-maps-2017.png" width="30" height="30"/></a>');
     }
   }
 
