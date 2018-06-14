@@ -1,0 +1,5 @@
+meta_product_name: "QuickFind"
+meta_title: "Quickfind - Get the right cloth at the right place"
+meta_description: "Get the right cloth at the right place.Don't waste you're time any more just quickfind you're cloth !"
+meta_image: "fb2.jpg"                       # should exist in `app/assets/images/`
+twitter_account: "@quickfindapp"   # required for Twitter Cards
