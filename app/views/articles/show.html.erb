@@ -48,7 +48,7 @@
         <div class="mapshow" id="map" data-markers="<%= @markers.to_json %>" data-stores="<%= @markers_stores.to_json %>" data-distances="<%= @distances.to_json %>" data-start="<%= @start.to_json %>"></div>
       </div>
       <div class="col-xs-12 col-md-6 card-details">
-        <div>
+        <div id="travel-mode">
           <strong>Travel Mode: </strong>
           <select id="mode-travel">
             <option value="driving">Driving</option>
@@ -60,7 +60,7 @@
         <div class="select-store">
           <h3><i class="fas fa-stopwatch"></i><h3>
           <h3><span id="time-travel">my time travel</span></h3>
-            
+
           <h3><i class="fas fa-shipping-fast"></i></h3>
           <h3><span id="store-distance"></span></h3>
         </div>
