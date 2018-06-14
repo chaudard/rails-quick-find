@@ -73,14 +73,20 @@ class ArticlesController < ApplicationController
   def distance_and_travel_times(store)
     travel_modes = ['driving', 'walking', 'bicycling', 'transit']
     travel_datas = {}
+    error_message = 'sorry, api limited!'
     travel_modes.each do |mode|
-      url = "https://maps.googleapis.com/maps/api/distancematrix/json?units=km&origins=#{@search.latitude},#{@search.longitude}&destinations=#{store.latitude},#{store.longitude}&mode=#{mode}&key=#{ENV['GOOGLE_API_SERVER_KEY']}"
-      response_serialized = open(url).read
-      response = JSON.parse(response_serialized)
-      distance = 0
-      distance = response["rows"][0]["elements"][0]["distance"]["text"] if response["rows"][0]["elements"][0]["distance"]
-      travel_time = 0
-      travel_time = response["rows"][0]["elements"][0]["duration"]["text"] if response["rows"][0]["elements"][0]["duration"]
+      distance = error_message
+      travel_time = error_message
+      do_request_for_test = false #pour forcer la requête, comme si on est en prod, !!!! à mettre à false en prod
+      if Rails.env != 'development' || do_request_for_test
+        url = "https://maps.googleapis.com/maps/api/distancematrix/json?units=km&origins=#{@search.latitude},#{@search.longitude}&destinations=#{store.latitude},#{store.longitude}&mode=#{mode}&key=#{ENV['GOOGLE_API_SERVER_KEY']}"
+        response_serialized = open(url).read
+        response = JSON.parse(response_serialized)
+        unless response['error_message']
+          distance = response["rows"][0]["elements"][0]["distance"]["text"] if response["rows"][0]["elements"][0]["distance"]
+          travel_time = response["rows"][0]["elements"][0]["duration"]["text"] if response["rows"][0]["elements"][0]["duration"]
+        end
+      end
       travel_mode_response = {}
       travel_mode_response['distance'] = distance
       travel_mode_response['time'] = travel_time
@@ -117,7 +123,8 @@ class ArticlesController < ApplicationController
 
       distance = 0 #@markers_distances[index]
 
-      travel_datas = distance_and_travel_times(store)
+      travel_datas = {}
+      travel_datas = distance_and_travel_times(store) unless article.nil? #inutile de calculer pour la page index, on ne le fait que pour le show (1 article)
 
       @markers << {lat: store.latitude,
                    lng: store.longitude,
@@ -131,7 +138,10 @@ class ArticlesController < ApplicationController
                    schedules: store.schedules,
                    posinlist: index,
                    # icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
-                   icon: 'https://findicons.com/files/icons/951/google_maps/32/clothes.png' # https://findicons.com/pack/951/google_maps/7
+                   # icon: 'https://findicons.com/files/icons/951/google_maps/32/clothes.png' # https://findicons.com/pack/951/google_maps/7
+                   # icon: 'https://findicons.com/files/icons/2771/batch/64/store.png' # https://findicons.com/pack/951/google_maps/7
+                   # icon: 'https://findicons.com/files/icons/2482/icons8_ever_growing_set_of_windows_8_metro_style_icons/26/shop.png' # https://findicons.com/pack/951/google_maps/7
+                   icon: 'https://findicons.com/files/icons/2342/pixelophilia2/32/shop.png' # https://findicons.com/pack/951/google_maps/7
                   }
     end
 
