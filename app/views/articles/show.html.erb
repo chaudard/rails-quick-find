@@ -48,33 +48,35 @@
         <div class="mapshow" id="map" data-markers="<%= @markers.to_json %>" data-stores="<%= @markers_stores.to_json %>" data-distances="<%= @distances.to_json %>" data-start="<%= @start.to_json %>"></div>
       </div>
       <div class="col-xs-12 col-md-6 card-details">
-        <div id="travel-mode">
-          <h4>Travel Mode:
-          <select id="mode-travel">
-            <option value="driving">Driving</option>
-            <option value="walking">Walking</option>
-            <option value="bicycling">Bicycling</option>
-            <option value="transit">Transit</option>
-          </select> </h4>
-        </div>
-        <div class="select-store">
-          <div>
-            <h4><i class="fas fa-stopwatch"></i><h4>
-            <h4><span id="time-travel">my time travel</span></h4>
+        <div class="outline">
+          <div id="travel-mode">
+            <h4>Travel Mode:
+            <select id="mode-travel">
+              <option value="driving">Driving</option>
+              <option value="walking">Walking</option>
+              <option value="bicycling">Bicycling</option>
+              <option value="transit">Transit</option>
+            </select> </h4>
+          </div>
+          <div class="travel">
+            <div>
+              <h4><i class="fas fa-stopwatch"></i><h4>
+              <h4><span id="time-travel">my time travel</span></h4>
+            </div>
+            <div>
+              <h4><i class="fas fa-shipping-fast"></i></h4>
+              <h4><span id="store-distance"></span></h4>
+            </div>
           </div>
           <div>
-            <h4><i class="fas fa-shipping-fast"></i></h4>
-            <h4><span id="store-distance"></span></h4>
+            <h4>Today :
+              <span><i class="fas fa-clock"></i></span>
+              <span id="open-hours-today"></span>
+            </h4>
           </div>
-        </div>
-        <div>
-          <h4>
-            <span><i class="fas fa-clock"></i></span>
-            <span id="open-hours-today"></span>
-          </h4>
-        </div>
-        <div id="buy">
-          <a id="navigation" class="btn btn-success" href="#" role="button">Go to store !</a>
+          <div id="webstore">
+            <a id="navigation" class="btn btn-success" target="_blank" href="#" role="button">Go to store !&nbsp; <%= image_tag 'http://images.frandroid.com/wp-content/uploads/2017/06/logo-google-maps-2017.png', width: "40" %></a>
+          </div>
         </div>
         <div class="informations">
          <div class="separator">

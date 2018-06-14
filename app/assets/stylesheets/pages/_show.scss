@@ -23,6 +23,7 @@
 
 .price {
   border: solid 1px black;
+  border-radius: 8px;
   height: 70px;
   color: red;
   text-align: center;
@@ -50,7 +51,7 @@
   // justify-content: space-around;
 }
 
-.select-store {
+.travel {
   width: auto;
   font-size: 12px;
   height: 7%;
@@ -75,9 +76,6 @@
 .informations {
   height: 100px;
   margin-top: 20px;
-  // p{
-  //   font-size: 20px;
-  // }
 }
 
 #vendor{
@@ -121,7 +119,7 @@ a:hover {
   color: #3A3C44;
 }
 
-#buy {
+#webstore {
 a {
   border-radius: 8px;
   padding: 20px;
@@ -130,9 +128,12 @@ a {
 }
 }
 
-// h3 {
-//   font-size: 20px !important;
-// }
+.outline {
+  border: solid 1px black;
+  background-color: white;
+  padding-bottom: 10px;
+  border-radius: 8px;
+}
 
 .button-back {
   font-weight: bold;
