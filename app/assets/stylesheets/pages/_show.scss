@@ -38,8 +38,8 @@
   width: auto;
   // border: solid 1px black;
   text-align: center;
-  padding-top: 20px;
-  margin: 30px 0px;
+  // padding-top: 20px;
+  // margin: 30px 0px;
   // background-color: red;
 }
 
@@ -58,11 +58,11 @@
   overflow: hidden;
   text-overflow: ellipsis;
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
 
-  p{
-    font-size: 16px;
-  }
+  // p{
+  //   font-size: 16px;
+  // }
 }
 
 .open-hours {
@@ -75,16 +75,18 @@
 .informations {
   height: 100px;
   margin-top: 20px;
-  p{
-    font-size: 20px;
-  }
+  // p{
+  //   font-size: 20px;
+  // }
 }
 
 #vendor{
  height: 50px;
  justify-content: center;
  padding-top: 10px;
- margin: 30px 0px;
+ margin-bottom: 25%;
+ // margin: 10px;
+ // margin-bottom: 20px;
  // border: solid 1px black;
 }
 
@@ -106,7 +108,7 @@
 }
 
 .separator{
-  margin: 30px 0px;
+  margin: 20px 0px;
 }
 
 #line {padding: 0px; margin: 0 25%; border: solid 1px #0b0b0b; width: 50%;}
@@ -128,9 +130,9 @@ a {
 }
 }
 
-h3 {
-  font-size: 20px !important;
-}
+// h3 {
+//   font-size: 20px !important;
+// }
 
 .button-back {
   font-weight: bold;

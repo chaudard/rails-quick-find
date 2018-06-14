@@ -10,7 +10,7 @@
     </div>
     <div class="row showrow">
       <div class="col-xs-12 col-md-6">
-        <%= image_tag @article.images.first.url, class: "img-responsive", width: "500" %>
+        <%= image_tag @article.images.first.url, class: "img-responsive center-img", width: "500" %>
       </div>
       <div class="col-xs-12 col-md-6 card-details">
         <div class="article-description">
@@ -19,12 +19,8 @@
           <div class="price">
             <p><%= number_to_currency((@article.price.to_f / 100), locale: :fr, precision: 2, strip_insignificant_zeros: true) %> </p>
           </div>
-          <div id="buy">
-<!--           <a href=<%= @article.url %> title="" target="_blank" class: "btn btn-primary" width: 100 %></a> -->
-            <a class="btn btn-success" href="<%= @article.url %>" target="_blank" role="button">VENDOR SITE</a>
-          </div>
           <div class="form-group select-size">
-            <label for="selsize">Available sizes : </label>
+            <h4><label for="selsize">Available sizes : </label>
             <select class="selectpicker" id="selsize" data-width="auto">
               <%=  @article.stocks.each do |stock| %>
                 <% if stock.available == true %>
@@ -33,10 +29,14 @@
                   <option value=stock.size disabled><%= stock.size %></option>
                 <% end %>
               <% end %>
-            </select>
+            </select></h4>
+          </div>
+          <div>
+<!--           <a href=<%= @article.url %> title="" target="_blank" class: "btn btn-primary" width: 100 %></a> -->
+            <h4><a href="<%= @article.url %>" target="_blank" role="button">Book Online</a></h4>
           </div>
           <div id="vendor">
-            <p><%= image_tag @article.provider.logo, class: "img-responsive center-block", width: "150" %></p>
+            <h4><a href="<%= @article.url %>" target="_blank"><%= image_tag @article.provider.logo, class: "img-responsive center-block", width: "150" %></a></h4>
           </div>
         </div>
       </div>
@@ -49,37 +49,37 @@
       </div>
       <div class="col-xs-12 col-md-6 card-details">
         <div id="travel-mode">
-          <strong>Travel Mode: </strong>
+          <h4>Travel Mode:
           <select id="mode-travel">
             <option value="driving">Driving</option>
             <option value="walking">Walking</option>
             <option value="bicycling">Bicycling</option>
             <option value="transit">Transit</option>
-          </select>
+          </select> </h4>
         </div>
         <div class="select-store">
           <div>
-            <h3><i class="fas fa-stopwatch"></i><h3>
-            <h3><span id="time-travel">my time travel</span></h3>
+            <h4><i class="fas fa-stopwatch"></i><h4>
+            <h4><span id="time-travel">my time travel</span></h4>
           </div>
           <div>
-            <h3><i class="fas fa-shipping-fast"></i></h3>
-            <h3><span id="store-distance"></span></h3>
+            <h4><i class="fas fa-shipping-fast"></i></h4>
+            <h4><span id="store-distance"></span></h4>
           </div>
         </div>
         <div>
-          <h3>
+          <h4>
             <span><i class="fas fa-clock"></i></span>
             <span id="open-hours-today"></span>
-          </h3>
+          </h4>
         </div>
-        <div >
-          <a id="navigation" class="btn btn-primary" href="#" role="button">Go to store !</a>
+        <div id="buy">
+          <a id="navigation" class="btn btn-success" href="#" role="button">Go to store !</a>
         </div>
         <div class="informations">
          <div class="separator">
-           <h3 id="store-address"><%= @markers_stores.first.address %></h3>
-           <p><i class="fas fa-phone">&nbsp;</i><span id="store-phone"></span></p>
+           <h4 id="store-address"><%= @markers_stores.first.address %></h4>
+           <h4><i class="fas fa-phone">&nbsp;</i><span id="store-phone"></span></h4>
          </div>
          <div class="open-hours">
            <p>Open Hours :</p>
