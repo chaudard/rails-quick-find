@@ -1,19 +1,20 @@
 source 'https://rubygems.org'
-ruby '2.4.4'
+ruby '2.6.6'
 
 gem "geocoder"
 gem 'bootsnap', require: false
 gem 'figaro'
-gem 'jbuilder', '~> 2.0'
-gem 'pg', '~> 0.21'
-gem 'puma'
-gem 'rails', '5.2.0'
-gem 'redis'
+gem 'jbuilder', '~> 2.7'
+gem 'pg', '>= 0.18', '< 2.0'
+gem 'puma', '~> 4.1'
+gem 'rails', '~> 6.0.3', '>= 6.0.3.4'
+gem 'redis', '~> 4.0'
 
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass', '~> 3.3'
-gem 'font-awesome-sass', '~> 5.0.9'
-gem 'sass-rails'
+gem 'font-awesome-sass'
+# gem 'sass-rails'
+gem 'sassc-rails'
 gem 'simple_form'
 gem 'uglifier'
 gem 'webpacker'
