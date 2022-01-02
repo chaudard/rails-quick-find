@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
-ruby '2.6.6'
+ruby '2.7.5'
 
-gem "geocoder"
+gem "geocoder", '1.7.0'
 gem 'bootsnap', require: false
 gem 'figaro'
 gem 'jbuilder', '~> 2.7'

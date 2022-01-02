@@ -2,10 +2,11 @@
   "name": "rails-quick-find",
   "private": true,
   "dependencies": {
-    "@rails/webpacker": "3.5",
+    "@rails/webpacker": "5.4.3",
     "bootstrap": "3",
     "gmaps": "^0.4.24",
     "jquery": "^3.3.1",
+    "popper.js": "^1.16.1",
     "typed.js": "^2.0.8"
   },
   "devDependencies": {
